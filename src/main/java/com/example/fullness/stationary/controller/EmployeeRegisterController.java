@@ -1,5 +1,5 @@
 package com.example.fullness.stationary.controller;
 
-public class StaffRegisterController {
+public class EmployeeRegisterController {
 
 }

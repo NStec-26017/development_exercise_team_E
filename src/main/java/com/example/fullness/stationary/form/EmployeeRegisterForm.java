@@ -1,5 +1,5 @@
 package com.example.fullness.stationary.form;
 
-public class StaffRegisterForm {
+public class EmployeeRegisterForm {
 
 }
