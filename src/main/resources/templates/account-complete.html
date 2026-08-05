@@ -1,4 +1,3 @@
-```
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -8,95 +7,58 @@
     <title>アカウント登録（完了）</title>
     <style>
         :root {
+            /* 共通カラー（メインカラー）の定義 */
             --green: #138a52;
-            --line: 4px;
         }
 
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
             font-family: "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
             color: #222;
-            background: #fff
+            background: #fff;
         }
 
         .wrap {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            border: 1px solid #000
+            border: 1px solid #000;
         }
 
-        header {
-            padding: 12px 18px;
-            text-align: center
-        }
-
-        .title {
-            color: var(--green);
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 6px
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            align-items: center;
-            padding-bottom: 8px
-        }
-
-        nav a {
-            color: var(--green);
-            text-decoration: none;
-            font-weight: 700
-        }
-
-        .logout {
-            border: 2px solid var(--green);
-            padding: 6px 12px;
-            border-radius: 6px;
-            background: #fff
-        }
-
-        .green-line {
-            height: var(--line);
-            background: var(--green)
-        }
-
+        /* メイン（アカウント登録完了エリア専用スタイル） */
         main {
             flex: 1;
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            padding: 40px 20px
+            padding: 40px 20px;
         }
 
         .card {
             width: 100%;
             max-width: 900px;
             text-align: center;
-            padding: 0 16px
+            padding: 0 16px;
         }
 
         h1 {
             font-size: 30px;
-            margin: 0 0 18px
+            margin: 0 0 18px;
         }
 
         p.msg {
             font-size: 18px;
             color: #333;
-            margin: 0 0 30px
+            margin: 0 0 30px;
         }
 
         .btns {
             display: inline-flex;
-            gap: 14px
+            gap: 14px;
         }
 
         .btn {
@@ -108,58 +70,39 @@
             font-weight: 700;
             font-size: 16px;
             text-decoration: none;
-            cursor: pointer
+            cursor: pointer;
         }
-
-        /* <!--font-sizeのところで文字の大きさ調節--> */
-
 
         .btn.primary {
             background: var(--green);
-            color: #fff
+            color: #fff;
         }
 
-        footer {
-            padding: 26px 10px;
-            text-align: center;
-            color: var(--green);
-            font-weight: 700
-        }
-
+        /* 小さい画面（スマホ）向けの調整 */
         @media(max-width:480px) {
             h1 {
-                font-size: 22px
+                font-size: 22px;
             }
 
             p.msg {
-                font-size: 16px
+                font-size: 16px;
             }
 
             .btn {
-                padding: 8px 12px
+                padding: 8px 12px;
             }
         }
     </style>
 </head>
 
 <body>
+
     <div class="wrap">
-        <header>
-            <div class="title">フルネス文具　管理画面</div>
-            <nav>
-                <a href="#">商品情報メンテナンス</a>
-                <a href="#">商品カテゴリ登録</a>
-                <a href="#">アカウント登録</a>
-                <a href="#" class="logout">ログアウト</a>
-            </nav>
-        </header>
-
-        <div class="green-line"></div>
-
         <main>
             <div class="card">
                 <h1>アカウント登録(完了)</h1>
-                <!--↓この下の名前とfullnessのところをそれぞれ入力された値が表示されるように変える-->
+
+
                 <p class="msg">フルネス太郎さんのアカウントを <strong>fullness</strong> で作成しました。</p>
 
                 <div class="btns">
@@ -168,12 +111,7 @@
                 </div>
             </div>
         </main>
-
-        <div class="green-line"></div>
-
-        <footer>Fullness Stationery</footer>
     </div>
 </body>
 
 </html>
-```

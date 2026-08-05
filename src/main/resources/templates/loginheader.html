@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>共通ヘッダーパーツ</title>
+    <style>
+        :root {
+            --green: #138a52;
+            --line: 4px;
+        }
+
+        /* どのページに組み込んでも崩れないための基本リセット設定 */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+            color: #222;
+        }
+
+        /* ヘッダー専用のスタイル */
+        header {
+            padding: 12px 18px;
+            text-align: center;
+            background: #fff;
+            /* 背景色を明示的に指定 */
+        }
+
+        .title {
+            color: var(--green);
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            align-items: center;
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+            /* スマホ等でメニューがはみ出さないよう折り返しを許可 */
+        }
+
+        nav a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .logout {
+            border: 2px solid var(--green);
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            /* クリック可能なことが分かりやすいように追加 */
+        }
+
+        .green-line {
+            height: var(--line);
+            background: var(--green);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+      ※共通部品として外部ファイル化（インクルード）する場合は、
+      実質以下の部分（<header>から<div class="green-line">まで）を切り取ってご使用ください。
+    -->
+    <header>
+        <div class="title">フルネス文具 管理画面</div>
+        <nav>
+            <a href="/admin/product">商品情報メンテナンス</a>
+            <a href="/admin/product/add">商品カテゴリ登録</a>
+            <a href="/admin/account/form">アカウント登録</a>
+            <a href="#" class="logout">ログアウト</a>
+        </nav>
+    </header>
+
+    <div class="green-line"></div>
+
+</body>
+
+</html>

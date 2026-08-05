@@ -14,4 +14,12 @@ public interface EmployeeAccountRepository {
     List<EmployeeAccount> selectAll();
 
     EmployeeAccount selectByName(String name);
+
+    /**
+     * アカウント新規登録
+     * 
+     * @param employeeAccount
+     * @return
+     */
+    int insert(EmployeeAccount employeeAccount);
 }

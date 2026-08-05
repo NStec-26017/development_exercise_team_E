@@ -1,4 +1,3 @@
-```
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -7,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品検索</title>
     <style>
+        /* ベース設定（必要に応じて共通CSSに移動、または削除してください） */
         body {
             margin: 0;
             font-family: Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -19,46 +19,7 @@
             border: 1px solid #000;
         }
 
-        header {
-            text-align: center;
-            padding: 8px 20px;
-        }
-
-        .title {
-            color: #1b8f57;
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 6px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            align-items: center;
-            padding-bottom: 8px;
-        }
-
-        nav a {
-            color: #1b8f57;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .logout {
-            border: 2px solid #1b8f57;
-            padding: 4px 14px;
-            border-radius: 4px;
-            background: #fff;
-        }
-
-        .green-line {
-            height: 4px;
-            background: #1b8f57;
-        }
-
+        /* メイン（商品検索エリア専用スタイル） */
         main {
             padding: 40px 20px;
             text-align: center;
@@ -97,7 +58,6 @@
             padding: 6px;
             text-align: center;
             vertical-align: middle;
-            /* <!--↓これ書くことでテキストボックスの中(120円とか)が横文字になる--> */
             writing-mode: horizontal-tb;
             text-orientation: mixed;
             white-space: nowrap;
@@ -134,31 +94,15 @@
             text-decoration: none;
             margin: 0 4px;
         }
-
-        footer {
-            text-align: center;
-            padding: 26px 0;
-            color: #1b8f57;
-            font-weight: bold;
-            font-size: 18px;
-        }
     </style>
 </head>
 
 <body>
+    <!-- 
+      ※headerとfooterを共通のレイアウトテンプレート側で出力する場合は、
+      実質以下の<main>タグの部分だけを切り取って流し込んでください。
+    -->
     <div class="wrap">
-        <header>
-            <div class="title">フルネス文具 管理画面</div>
-            <nav>
-                <a href="#">商品情報メンテナンス</a>
-                <a href="#">商品カテゴリ登録</a>
-                <a href="#">アカウント登録</a>
-                <a href="#" class="logout">ログアウト</a>
-            </nav>
-        </header>
-
-        <div class="green-line"></div>
-
         <main>
             <h1>商品検索</h1>
 
@@ -228,12 +172,7 @@
                 <a href="#">最後</a>
             </div>
         </main>
-
-        <div class="green-line"></div>
-
-        <footer>Fullness Stationery</footer>
     </div>
 </body>
 
 </html>
-```
