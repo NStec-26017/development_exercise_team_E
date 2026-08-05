@@ -7,10 +7,14 @@ import lombok.Data;
 /**
  * 商品カテゴリーテーブルを示すentity
  */
-@Data
-public class ProductCategory implements Serializable {
 
+@Data
+public class Product implements Serializable {
     private Integer id;
+    private Integer ProductCategoryId;
     private String name;
+    private Integer price;
+    private char imageUrl;
+    private Integer deleteFlag;
 
 }
