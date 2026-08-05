@@ -9,14 +9,14 @@ create table customer (
     phone_number varchar(20) ,
     mail_address varchar(200) ,
     username varchar(30) ,
-    password varchar(300) ,
+    password varchar(255) ,
     register_date timestamp 
 )
 
 //departmentテーブル作成
 create table department(
 	id SERIAL PRIMARY KEY ,
-	name varchar(50) 
+	name varchar(100) 
 ) ;
 
 //employeeテーブル作成
@@ -36,7 +36,7 @@ create table employee_account(
 	id SERIAL PRIMARY KEY ,
 	employee_id integer ,
 	name varchar(20) ,
-	password varchar(20) ,
+	password varchar(255) ,
 
 	FOREIGN KEY (employee_id)
 	    REFERENCES employee(id)
@@ -46,7 +46,7 @@ create table employee_account(
 //product_categoryテーブル作成
 create table product_category(
 	id SERIAL PRIMARY KEY ,
-	name varchar(20) 
+	name varchar(30) 
 ) ;
 
 //productテーブル作成
@@ -112,16 +112,11 @@ create table order_detail(
 	id SERIAL PRIMARY KEY ,
 	order_id integer ,
 	product_id integer ,
-	customer_id integer ,
+	unit_price integer ,
 	count integer ,
 
 	FOREIGN KEY (order_id)
 	    REFERENCES orders(id) ,
 	FOREIGN KEY (product_id)
-	    REFERENCES product(id) ,
-	FOREIGN KEY (customer_id)
-	    REFERENCES customer(id)
-
-
+	    REFERENCES product(id) 
 ) ;
-//

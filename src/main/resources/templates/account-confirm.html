@@ -1,0 +1,215 @@
+```
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>アカウント登録（確認）</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+            color: #222;
+            background: #fff
+        }
+
+        .wrap {
+            min-height: 100vh;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column
+        }
+
+        header {
+            padding: 10px 20px;
+            text-align: center
+        }
+
+        .title {
+            color: #138a52;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 8px
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            padding-bottom: 8px
+        }
+
+        nav a {
+            color: #138a52;
+            text-decoration: none;
+            font-weight: 700
+        }
+
+        .logout {
+            border: 2px solid #138a52;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: #fff
+        }
+
+        .green-line {
+            height: 4px;
+            background: #138a52
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start
+        }
+
+        .box {
+            width: 100%;
+            max-width: 760px;
+            text-align: center;
+            padding: 10px 20px;
+            box-sizing: border-box
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 6px 0 30px
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 18px
+        }
+
+        .row .label {
+            width: 140px;
+            text-align: right;
+            font-size: 16px;
+            color: #333
+        }
+
+        .row .value {
+            min-width: 160px;
+            text-align: left;
+            font-size: 16px
+        }
+
+        .pw {
+            letter-spacing: 3px
+        }
+
+        /* パスワードの伏字を見やすくする */
+        .btn-area {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            align-items: center
+        }
+
+        .link-cancel {
+            color: #138a52;
+            text-decoration: none;
+            font-weight: 700
+        }
+
+        .btn {
+            border: 2px solid #138a52;
+            color: #138a52;
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn.primary {
+            background: #138a52;
+            color: #fff
+        }
+
+        footer {
+            padding: 26px 10px;
+            text-align: center;
+            color: #138a52;
+            font-weight: 700
+        }
+
+        @media (max-width:480px) {
+            .row {
+                flex-direction: column;
+                gap: 6px
+            }
+
+            .row .label {
+                text-align: center;
+                width: auto
+            }
+
+            .row .value {
+                text-align: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="title">フルネス文具 管理画面</div>
+            <nav>
+                <a href="#">商品情報メンテナンス</a>
+                <a href="#">商品カテゴリ登録</a>
+                <a href="#">アカウント登録</a>
+                <a href="#" class="logout">ログアウト</a>
+            </nav>
+        </header>
+
+        <div class="green-line"></div>
+
+        <main>
+            <div class="box">
+                <h1>アカウント登録(確認)</h1>
+
+                <div class="info">
+                    <div class="row">
+                        <div class="label">社員名</div>
+                        <div class="value">フルネス太郎</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">アカウント名</div>
+                        <div class="value">fullness</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">パスワード</div>
+                        <div class="value pw">*******</div>
+                    </div>
+                </div>
+
+                <div class="btn-area">
+                    <a href="#" class="link-cancel">キャンセル</a>
+                    <button class="btn" onclick="history.back()">戻る</button>
+                    <button class="btn primary" onclick="alert('登録しました（ダミー）')">登録</button>
+                </div>
+            </div>
+        </main>
+
+        <div class="green-line"></div>
+
+        <footer>Fullness Stationery</footer>
+    </div>
+</body>
+
+</html>
+```
