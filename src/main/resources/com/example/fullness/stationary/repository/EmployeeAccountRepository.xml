@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.fullness.stationary.EmployeeAccountRepository">
+
+    <resultMap id="employeeAccountResultMap" type="com.company.ecsite.entity.EmployeeAccount">
+        <id     property="id"         column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="name"       column="name"/>
+        <result property="password"   column="password"/>
+    </resultMap>
+
+    <!-- アカウント名で1件取得する(重複チェックに使用) -->
+    <select id="selectByName" resultMap="employeeAccountResultMap">
+        <![CDATA[
+        SELECT
+            id,
+            employee_id,
+            name,
+            password
+        FROM employee_account
+        WHERE name = #{name}
+        ]]>
+    </select>
+
+    <insert id="insert"
+            parameterType="com.example.fullness.stationary.EmployeeAccount"
+    >
+        <![CDATA[
+        INSERT INTO employee_account (employee_id, name, password)
+        VALUES (#{employeeId}, #{name}, #{password})
+        ]]>
+    </insert>
