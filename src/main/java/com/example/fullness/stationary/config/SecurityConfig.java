@@ -27,7 +27,7 @@ public class SecurityConfig {
                 authz -> authz
                         .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/", "/login").permitAll()
-                        .requestMatchers("/menu", "/logout").authenticated()
+                        .requestMatchers("/admin", "/logout").authenticated()
                         .anyRequest().denyAll())
 
                 // ログインにかかわる情報
@@ -37,7 +37,7 @@ public class SecurityConfig {
                         // ログイン画面表示URL
                         .loginPage("/login")
                         // 認証成功時に表示するページ
-                        .defaultSuccessUrl("/menu")
+                        .defaultSuccessUrl("/admin")
                         // 認証失敗時のリダイレクト先
                         .failureUrl("/login").permitAll())
 
