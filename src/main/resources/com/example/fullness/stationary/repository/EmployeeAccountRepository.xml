@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org">
-
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespaceには連動させるRepositoryのフルパッケージ名を設定します -->
-<mapper namespace="com.example.demo.EmployeeAccountRepository">
+<mapper namespace="com.example.fullness.stationary.EmployeeAccountRepository">
 
     <!-- データベースのカラム名とEntityのフィールド名をマッピングします -->
-    <resultMap id="EmployeeAccountResultMap" type="com.example.demo.EmployeeAccount">
+    <resultMap id="EmployeeAccountResultMap" type="com.example.fullness.stationary.EmployeeAccount">
         <id property="id" column="id"/>
         <result property="employeeId" column="employee_id"/>
         <result property="name" column="name"/>
