@@ -12,4 +12,6 @@ import com.example.fullness.stationary.entity.EmployeeAccount;
 @Mapper
 public interface EmployeeAccountRepository {
     List<EmployeeAccount> selectAll();
+
+    EmployeeAccount selectByName(String name);
 }
