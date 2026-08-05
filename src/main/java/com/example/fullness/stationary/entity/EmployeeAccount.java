@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import lombok.Data;
 
+/**
+ * 社員アカウントテーブルを示すentity
+ */
 @Data
 public class EmployeeAccount implements Serializable {
     private int id;
