@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org">
+
+<!-- namespaceには連動させるRepositoryのフルパッケージ名を設定します -->
+<mapper namespace="com.example.demo.EmployeeAccountRepository">
+
+    <!-- データベースのカラム名とEntityのフィールド名をマッピングします -->
+    <resultMap id="EmployeeAccountResultMap" type="com.example.demo.EmployeeAccount">
+        <id property="id" column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <!-- 1. 全社員アカウント情報の取得 -->
+    <select id="selectAll" resultMap="EmployeeAccountResultMap">
+       <![CDATA[
+            SELECT * FROM employee_account
+        ]]>
+    </select>
+
+    <!-- 2. ログイン認証用：名前による単一アカウント検索 -->
+    <select id="selectByName" parameterType="string" resultMap="EmployeeAccountResultMap">
+        <![CDATA[
+        SELECT * FROM employee_account WHERE name = #{name}
+        ]]>
+    </select>
+
+</mapper>
