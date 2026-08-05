@@ -9,7 +9,7 @@ import lombok.Data;
 public class EmployeeRegisterForm {
 
     /** 選択された社員のID */
-    private int employeeId;
+    private Integer employeeId;
 
     /** 入力されたアカウント名 */
     private String accountName;

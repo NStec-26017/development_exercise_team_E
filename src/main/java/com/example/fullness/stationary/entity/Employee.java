@@ -9,8 +9,8 @@ import lombok.Data;
  */
 @Data
 public class Employee implements Serializable {
-    private int id;
-    private int departmentId;
+    private Integer id;
+    private Integer departmentId;
     private String name;
     private String nameKana;
 }
