@@ -8,6 +8,6 @@ import lombok.Data;
  */
 @Data
 public class Department implements Serializable {
-    private int id;
+    private Integer id;
     private String name;
 }
