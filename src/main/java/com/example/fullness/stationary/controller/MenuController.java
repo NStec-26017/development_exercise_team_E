@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * バックエンドの「メニュー画面」Controller
+ * BP001「メニュー画面」Controller
  */
 @Controller
 @RequestMapping("/admin")
