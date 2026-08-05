@@ -1,8 +1,14 @@
 package com.example.fullness.stationary.entity;
 
+import java.io.Serializable;
+
+import lombok.Data;
+
 /**
  * 商品カテゴリーテーブルを示すentity
  */
-public class ProductCategory {
+@Data
+public class ProductCategory implements Serializable {
+    
 
 }
