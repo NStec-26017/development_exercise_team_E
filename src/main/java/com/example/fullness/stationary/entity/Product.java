@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 商品カテゴリーテーブルを示すentity
+ * 商品テーブルを示すentity
  */
 
 @Data
