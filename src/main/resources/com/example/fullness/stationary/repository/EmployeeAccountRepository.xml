@@ -10,18 +10,21 @@
         <result property="password" column="password"/>
     </resultMap>
 
+    <!-- 全件取得 -->
     <select id="selectAll" resultMap="EmployeeAccountResultMap">
        <![CDATA[
        SELECT * FROM employee_account
        ]]>
     </select>
 
+    <!-- アカウント名で1件取得する(重複チェックに使用) -->
     <select id="selectByName" parameterType="string" resultMap="EmployeeAccountResultMap">
         <![CDATA[
         SELECT * FROM employee_account WHERE name = #{name}
         ]]>
     </select>
 
+    <!--担当者アカウントを新規登録する-->
     <insert id="insert" parameterType="com.example.fullness.stationary.entity.EmployeeAccount" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
         INSERT INTO employee_account (employee_id, name, password)

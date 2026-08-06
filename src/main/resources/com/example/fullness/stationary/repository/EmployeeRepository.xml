@@ -14,6 +14,7 @@
         </association>
     </resultMap>
 
+    <!-- 全社員を部署情報つきで取得する -->
     <select id="selectAll" resultMap="employeeResultMap">
         <![CDATA[
         SELECT *
@@ -23,6 +24,7 @@
         ]]>
     </select>
 
+    <!-- IDで社員を1件取得する -->
     <select id="selectById" resultMap="employeeResultMap">
         <![CDATA[
         SELECT *
