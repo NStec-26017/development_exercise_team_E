@@ -9,8 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
- * ログイン認証制御とログアウト制御を行うクラス。
- * パスワードのハッシュ化を行う。
+ * パスワードのハッシュ化を行い、ログイン認証制御とログアウト制御を行うクラス。
+ * 
  */
 @Configuration
 @EnableWebSecurity
@@ -33,7 +33,7 @@ public class SecurityConfig {
                 // ログインにかかわる情報
                 .formLogin(login -> login
                         // ログイン時のPost先URL
-                        .loginProcessingUrl("/authenticate")
+                        .loginProcessingUrl("/login")
                         // ログイン画面表示URL
                         .loginPage("/login")
                         // 認証成功時に表示するページ
