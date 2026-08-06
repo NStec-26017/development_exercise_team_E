@@ -31,8 +31,8 @@ import lombok.RequiredArgsConstructor;
  * 
  */
 @Controller
-@RequestMapping("/admin/account/form")
-@SessionAttributes(names = { "EmployeeRegisterForm" })
+@RequestMapping("/admin/account")
+@SessionAttributes(names = { "employeeRegisterForm" })
 @RequiredArgsConstructor
 public class EmployeeRegisterController {
 
@@ -45,7 +45,7 @@ public class EmployeeRegisterController {
      * 
      * @param binder
      */
-    @InitBinder("EmployeeRegisterForm")
+    @InitBinder("employeeRegisterForm")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(employeeRegisterValidator);
     }
@@ -65,8 +65,8 @@ public class EmployeeRegisterController {
      * @param form
      * @return
      */
-    @GetMapping
-    public String showInputForm(@ModelAttribute("EmployeeRegisterForm") EmployeeRegisterForm form) {
+    @GetMapping("/form")
+    public String showInputForm(@ModelAttribute("employeeRegisterForm") EmployeeRegisterForm form) {
         return "account-form";
     }
 
@@ -78,10 +78,9 @@ public class EmployeeRegisterController {
      * @param model
      * @return
      */
-    @PostMapping
-    public String confirm(@Validated @ModelAttribute("EmployeeRegisterForm") EmployeeRegisterForm request,
-            BindingResult bindingResult,
-            Model model) {
+    @PostMapping("/confirm")
+    public String confirm(@Validated @ModelAttribute("employeeRegisterForm") EmployeeRegisterForm request,
+            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "account-form";
         }
@@ -98,7 +97,7 @@ public class EmployeeRegisterController {
      * 
      * @return
      */
-    @PostMapping
+    @PostMapping("/back")
     public String back() {
         return "account-form";
     }
@@ -109,7 +108,7 @@ public class EmployeeRegisterController {
      * @param sessionStatus
      * @return
      */
-    @PostMapping
+    @PostMapping("/cancel")
     public String cancel(SessionStatus sessionStatus) {
         sessionStatus.setComplete();
         return "menu";
@@ -124,13 +123,12 @@ public class EmployeeRegisterController {
      * @return
      */
     @PostMapping
-    public String register(@ModelAttribute("EmployeeRegisterForm") EmployeeRegisterForm request,
-            RedirectAttributes redirectAttributes,
-            SessionStatus sessionStatus) {
+    public String register(@ModelAttribute("employeeRegisterForm") EmployeeRegisterForm request,
+            RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
         Integer accountId = employeeRegisterService.register(request);
         redirectAttributes.addFlashAttribute("accountId", accountId);
         sessionStatus.setComplete();
-        return "redirect:account-complete";
+        return "redirect:/admin/account/complete";
     }
 
     /**
@@ -138,7 +136,7 @@ public class EmployeeRegisterController {
      * 
      * @return
      */
-    @GetMapping
+    @GetMapping("/complete")
     public String showComplete() {
         return "account-complete";
     }
