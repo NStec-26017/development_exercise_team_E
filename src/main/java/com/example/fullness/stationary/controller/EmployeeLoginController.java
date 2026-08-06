@@ -16,4 +16,8 @@ public class EmployeeLoginController {
         return "login";
     }
 
+    @RequestMapping
+    public String menu() {
+        return "menu";
+    }
 }
