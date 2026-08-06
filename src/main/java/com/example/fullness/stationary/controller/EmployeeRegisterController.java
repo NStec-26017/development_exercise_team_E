@@ -2,7 +2,6 @@ package com.example.fullness.stationary.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +22,6 @@ import com.example.fullness.stationary.repository.EmployeeRepository;
 import com.example.fullness.stationary.service.EmployeeRegisterService;
 import com.example.fullness.stationary.validator.EmployeeRegisterValidator;
 
-import groovy.transform.ASTTest;
 import lombok.RequiredArgsConstructor;
 
 /**

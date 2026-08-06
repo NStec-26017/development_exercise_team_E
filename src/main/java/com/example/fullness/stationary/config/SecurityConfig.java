@@ -26,18 +26,18 @@ public class SecurityConfig {
                 // アクセス制限の情報
                 authz -> authz
                         .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/", "/login").permitAll()
-                        .requestMatchers("/admin", "/logout").authenticated()
+                        .requestMatchers("/", "/admin", "/admin/login").permitAll()
+                        .requestMatchers("/admin/login", "/logout").authenticated()
                         .anyRequest().denyAll())
 
                 // ログインにかかわる情報
                 .formLogin(login -> login
                         // ログイン時のPost先URL
-                        .loginProcessingUrl("/authenticate")
+                        .loginProcessingUrl("/login")
                         // ログイン画面表示URL
                         .loginPage("/login")
                         // 認証成功時に表示するページ
-                        .defaultSuccessUrl("/admin")
+                        .defaultSuccessUrl("/admin", true)
                         // 認証失敗時のリダイレクト先
                         .failureUrl("/login").permitAll())
 
