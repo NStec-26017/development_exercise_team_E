@@ -25,28 +25,26 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 // アクセス制限の情報
                 authz -> authz
-                        .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/", "/admin", "/admin/login").permitAll()
-                        .requestMatchers("/admin/login", "admin/logout").authenticated()
-                        .anyRequest().denyAll())
+                        .requestMatchers("/public/**", "/css/**", "/", "/admin", "/admin/login").permitAll()
+                        .anyRequest().authenticated())
 
                 // ログインにかかわる情報
                 .formLogin(login -> login
                         // ログイン時のPost先URL
-                        .loginProcessingUrl("/login")
+                        .loginProcessingUrl("/admin/login")
                         // ログイン画面表示URL
-                        .loginPage("/login")
+                        .loginPage("/admin/login")
                         // 認証成功時に表示するページ
                         .defaultSuccessUrl("/admin", true)
                         // 認証失敗時のリダイレクト先
-                        .failureUrl("/login").permitAll())
+                        .failureUrl("/admin/login").permitAll())
 
                 // ログアウトにかかわる情報
                 .logout(logout -> logout
                         // ログアウト時のURL（Post先）
-                        .logoutUrl("/logout")
+                        .logoutUrl("/admin/logout")
                         // ログアウト成功時のリダイレクト先
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/admin/login")
                         // セッションを破棄するか否か
                         .invalidateHttpSession(true)
                         // 認証情報をクリアするか否か

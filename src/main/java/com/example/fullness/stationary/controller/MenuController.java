@@ -18,6 +18,6 @@ public class MenuController {
      */
     @GetMapping()
     public String showMenu() {
-        return "menu";
+        return "admin/menu";
     }
 }

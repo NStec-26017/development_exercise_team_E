@@ -9,20 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/login")
 public class EmployeeLoginController {
     /**
      * BP003「アカウント登録(完了)」画面表示
      * 
      */
-    @RequestMapping("login")
-    public String login() {
-        return "login";
-    }
-
     @RequestMapping
-    public String menu() {
-        return "menu";
+    public String login() {
+        return "admin/login";
     }
 
 }
