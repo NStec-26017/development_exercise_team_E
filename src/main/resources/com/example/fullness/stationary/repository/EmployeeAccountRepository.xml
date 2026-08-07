@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.fullness.stationary.repository.EmployeeAccountRepository">
+
+    <resultMap id="EmployeeAccountResultMap" type="com.example.fullness.stationary.entity.EmployeeAccount">
+        <id property="id" column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="EmployeeAccountResultMap">
+       <![CDATA[
+       SELECT * FROM employee_account
+       ]]>
+    </select>
+
+    <select id="selectByName" parameterType="string" resultMap="EmployeeAccountResultMap">
+        <![CDATA[
+        SELECT * FROM employee_account WHERE name = #{name}
+        ]]>
+    </select>
+
+    <insert id="insert" parameterType="com.example.fullness.stationary.entity.EmployeeAccount" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+        INSERT INTO employee_account (employee_id, name, password)
+        VALUES (#{employeeId}, #{name}, #{password})
+        ]]>
+    </insert>
+</mapper>
