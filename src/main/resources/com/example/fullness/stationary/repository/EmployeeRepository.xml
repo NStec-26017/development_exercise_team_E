@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.fullness.stationary.repository.EmployeeRepository">
+
+    <resultMap id="employeeResultMap" type="com.example.fullness.stationary.entity.Employee">
+        <id property="id" column="id"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="name" column="name"/>
+        <result property="nameKana" column="name_kana"/>
+        <association property="department" javaType="com.example.fullness.stationary.entity.Department">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+   <!-- アカウント未作成の社員を社員ID順に取得する -->
+    <select id="selectAllWithoutAccount" resultMap="employeeResultMap">
+        <![CDATA[
+            SELECT *
+            FROM employee e JOIN department d
+            ON e.department_id = d.id
+            WHERE NOT EXISTS (
+                SELECT 1 FROM employee_account ea WHERE ea.employee_id = e.id
+            )
+            ORDER BY e.id
+        ]]>
+    </select>
+
+    <!-- 社員IDで社員情報を取得する -->
+    <select id="findById" resultMap="employeeResultMap">
+        <![CDATA[
+            SELECT *
+            FROM employee e JOIN department d
+            ON e.department_id = d.id
+            WHERE e.id = #{id}
+        ]]>
+    </select>
+
+</mapper>
