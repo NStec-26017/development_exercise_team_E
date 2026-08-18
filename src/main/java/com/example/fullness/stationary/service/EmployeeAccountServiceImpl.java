@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.fullness.stationary.entity.Employee;
 import com.example.fullness.stationary.entity.EmployeeAccount;
-import com.example.fullness.stationary.exception.BackEndException;
+import com.example.fullness.stationary.exception.BusinessException;
 import com.example.fullness.stationary.repository.EmployeeAccountRepository;
 import com.example.fullness.stationary.repository.EmployeeRepository;
 
@@ -65,7 +65,7 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
     public void create(EmployeeAccount employeeAccount) {
         if (employeeAccountRepository.existsByName(employeeAccount.getName())) {
             String msg = messageSource.getMessage(DUPLICATE_MESSAGE_KEY, null, Locale.JAPAN);
-            throw new BackEndException(msg);
+            throw new BusinessException(msg);
         }
         String password = employeeAccount.getPassword();
         employeeAccount.setPassword(passwordEncoder.encode(password));

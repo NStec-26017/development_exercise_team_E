@@ -7,14 +7,14 @@ package com.example.fullness.stationary.exception;
  * アカウント名の重複など、業務ルールに違反した場合にServiceからスローする
  * </p>
  */
-public class BackEndException extends RuntimeException {
+public class BusinessException extends RuntimeException {
 
     /**
      * メッセージを指定して業務例外を生成する。
      *
      * @param msg エラーメッセージ
      */
-    public BackEndException(String msg) {
+    public BusinessException(String msg) {
         super(msg);
     }
 }
