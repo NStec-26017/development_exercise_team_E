@@ -33,7 +33,7 @@ public class EmployeeLoginController {
      * 
      */
     @GetMapping("/admin/login")
-    public String login(@RequestParam(required = false) String error, Model model) {
+    public String adminLogin(@RequestParam(required = false) String error, Model model) {
         if (error != null) {
             model.addAttribute("errorMessage", "アカウント名またはパスワードが正しくありません");
         }
