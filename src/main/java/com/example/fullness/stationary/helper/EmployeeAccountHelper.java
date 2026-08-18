@@ -30,8 +30,11 @@ public class EmployeeAccountHelper {
     public EmployeeAccount convert(EmployeeAccountForm employeeAccountForm) {
         EmployeeAccount employeeAccount = new EmployeeAccount();
         employeeAccount.setEmployeeId(employeeAccountForm.getEmployeeId());
+        // Form側の項目名(accountName)とEntity側の項目名(name)が異なるため、
+        // ここで対応付けている
         employeeAccount.setName(employeeAccountForm.getAccountName());
         employeeAccount.setPassword(employeeAccountForm.getPassword());
         return employeeAccount;
     }
+
 }
