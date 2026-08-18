@@ -27,27 +27,7 @@ import java.util.List;
 
 /**
  * UC009「担当者アカウント登録」を担当するController。
- *
- * <p>
- * Controllerは1つのトランザクション(業務処理)の単位で作成する。
- * 本クラスは「担当者アカウント登録」という1業務を、入力→確認→完了の
- * 3画面で完結させる。
- * </p>
- *
- * <p>
- * 担当する画面とURL:
- * </p>
- * <ul>
- * <li>BP003 アカウント登録(入力) : GET/POST {@code /admin/account/form}</li>
- * <li>BP004 アカウント登録(確認) : POST {@code /admin/account/confirm}</li>
- * <li>BP005 アカウント登録(完了) : GET {@code /admin/account/complete}</li>
- * </ul>
- *
- * <p>
- * 画面(admin/account/*.html)は配布されたものを変更しないため、
- * Model・Sessionに格納するオブジェクトの属性名やURLは、
- * <b>画面側が参照している名前に合わせている</b>。
- * </p>
+ * 
  */
 @Controller
 // このController内の全リクエストハンドラメソッドに共通するURLパスを指定する
@@ -58,7 +38,6 @@ import java.util.List;
 @SessionAttributes("form")
 public class EmployeeRegisterController {
 
-    /** 業務処理(ドメイン層)を呼び出すためのService。 */
     @Autowired
     EmployeeAccountService employeeAccountService;
 
@@ -67,7 +46,7 @@ public class EmployeeRegisterController {
     EmployeeAccountHelper employeeAccountHelper;
 
     /**
-     * Formのインスタンスを生成してModelに格納する(form-backing bean)。
+     * Formのインスタンスを生成してModelに格納する
      *
      * <p>
      * {@code @ModelAttribute}を付与したメソッドは、リクエストハンドラメソッドが
@@ -114,11 +93,6 @@ public class EmployeeRegisterController {
     /**
      * BP003「担当者アカウント登録(入力)」画面を表示する。
      *
-     * <p>
-     * 表示に必要なForm・社員一覧は{@code @ModelAttribute}を付与したメソッドが
-     * 事前に用意しているため、このメソッドはView名を返すだけでよい。
-     * </p>
-     *
      * @return 入力画面のView名
      */
     @GetMapping("/form")
@@ -130,11 +104,6 @@ public class EmployeeRegisterController {
 
     /**
      * 入力内容をチェックし、BP004「担当者アカウント登録(確認)」画面を表示する。
-     *
-     * <p>
-     * 画面側のフォームの送信先が {@code /admin/account/form} のため、
-     * 入力画面の表示(GET)と同じパスでPOSTを受け取る。
-     * </p>
      *
      * <p>
      * {@code @Validated}を付与することで、Formに定義したアノテーション
@@ -178,11 +147,6 @@ public class EmployeeRegisterController {
     /**
      * 確認画面の「戻る」「登録」ボタン押下時の処理。
      *
-     * <p>
-     * 画面側は1つのフォームで構成されており、押されたボタンによって
-     * リクエストパラメータ{@code action}の値("back"または"register")だけが
-     * 変わる作りのため、このメソッド内で処理を振り分ける。
-     * </p>
      *
      * @param form               Sessionに保持されている入力内容
      * @param action             押されたボタンを表す値("back" または "register")
@@ -226,11 +190,6 @@ public class EmployeeRegisterController {
     /**
      * BP005「担当者アカウント登録(完了)」画面を表示する。
      *
-     * <p>
-     * 表示に必要な"form"は、{@link #process}がフラッシュスコープへ格納したものが
-     * Spring MVCによって自動的にModelへ引き継がれている。
-     * </p>
-     *
      * @return 完了画面のView名
      */
     @GetMapping("/complete")
@@ -240,12 +199,6 @@ public class EmployeeRegisterController {
 
     /**
      * 業務例外(アカウント名の重複)が発生した場合の処理。
-     *
-     * <p>
-     * Serviceで発生した例外はControllerに伝え、適切な処置および画面遷移をする必要がある。
-     * {@code @ExceptionHandler}を付与したメソッドは例外処理専用メソッドになり、
-     * このController内で該当する例外が発生した際に呼び出される。
-     * </p>
      *
      * <p>
      * このメソッドが無い場合、業務例外がそのまま画面に伝わり
