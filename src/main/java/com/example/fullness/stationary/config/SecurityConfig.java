@@ -15,26 +15,45 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
         /**
          * セキュリティルールを記載。
          */
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http.authorizeHttpRequests(authz -> authz
-                                .requestMatchers("/public/**", "/css/**", "/", "/admin", "/admin/login",
-                                                "/admin/account/**")
-                                .permitAll()
-                                .anyRequest().authenticated());
+
+                http.authorizeHttpRequests(
+                                // アクセス制限の情報
+                                authz -> authz
+                                                .requestMatchers("/public/**", "/css/**", "/images/**", "/", "/admin",
+                                                                "/admin/account/**")
+                                                .permitAll()
+                                                .anyRequest().authenticated());
+
+                // // ログインにかかわる情報
                 // .formLogin(login -> login
+                // // ログイン時のPost先URL
                 // .loginProcessingUrl("/admin/login")
+                // // ログイン画面表示URL
                 // .loginPage("/admin/login")
+                // .usernameParameter("accountName")
+                // .passwordParameter("password")
+                // // 認証成功時に表示するページ
                 // .defaultSuccessUrl("/admin", true)
-                // .failureUrl("/admin/login").permitAll())
+                // .failureUrl("/admin/login?error")
+                // .permitAll())
+
+                // // ログアウトにかかわる情報
                 // .logout(logout -> logout
+                // // ログアウト時のURL（Post先）
                 // .logoutUrl("/admin/logout")
-                // .logoutSuccessUrl("/admin/login")
+                // // ログアウト成功時のリダイレクト先
+                // .logoutSuccessUrl("/admin")
+                // // セッションを破棄するか否か
                 // .invalidateHttpSession(true)
+                // // 認証情報をクリアするか否か
                 // .clearAuthentication(true)
+                // // 消すCookieの名前
                 // .deleteCookies("JSESSIONID"));
                 return http.build();
         }
