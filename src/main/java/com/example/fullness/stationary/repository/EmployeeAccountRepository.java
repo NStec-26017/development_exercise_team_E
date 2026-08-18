@@ -40,28 +40,12 @@ public interface EmployeeAccountRepository {
 
     /**
      * 指定されたアカウント名が既に登録されているかを確認する。
-     *
-     * <p>
-     * UC009「担当者アカウント登録」の重複チェックで利用する。
-     * 件数ではなく真偽値を返すことで、呼び出し側の判定処理を簡潔にしている。
-     * </p>
-     *
-     * @param name アカウント名
-     * @return 登録済みの場合はtrue
      */
     Boolean existsByName(String name);
 
     /**
      * 社員アカウントを新規登録する。
      *
-     * <p>
-     * 登録後、データベースのserialで採番されたアカウントIDが
-     * 引数の{@code employeeAccount}のidフィールドに設定される
-     * (XML側の{@code useGeneratedKeys}と{@code keyProperty}の指定による)。
-     * </p>
-     *
-     * @param employeeAccount 登録する社員アカウント
-     * @return 登録に成功した場合はtrue
      */
     Boolean create(EmployeeAccount employeeAccount);
 

@@ -121,26 +121,18 @@ public class EmployeeRegisterController {
             BindingResult bindingResult,
             Model model) {
 
-        // 入力チェックでエラーがある場合は入力画面に戻す(例外シナリオ)
-        // if (bindingResult.hasErrors()) {
-        // // 画面側がエラーを ${errorMessages} のリストとしてまとめて表示する作りのため、
-        // // BindingResultの内容をメッセージのリストに変換して格納する
-        // model.addAttribute("errorMessages", toMessages(bindingResult));
-        // return "admin/account/form";
-        // }
+        // 入力チェックでエラーがある場合の処理（例外シナリオ）
+        if (bindingResult.hasErrors()) {
+            // 1. Helperを使ってエラーメッセージのリストを作成し、モデルに格納する
+            model.addAttribute("errorMessages", employeeAccountHelper.toMessages(bindingResult));
 
-        // 選択された社員が実在するかを確認する
-        Employee employee = employeeAccountService.findEmployeeById(form.getEmployeeId());
-        if (employee == null) {
-            model.addAttribute("errorMessages", List.of("社員名を選択してください"));
+            // 2. 画面のセレクトボックス表示に必要な「社員リスト」を再取得してモデルに格納する
+            // AI 意味わからん
+            List<Employee> employees = employeeAccountService.findEmployeesWithoutAccount();
+            model.addAttribute("employees", employees);
+
             return "admin/account/form";
         }
-
-        // 確認画面に表示する社員名をFormに設定する。
-        // Formは@SessionAttributesの管理対象のため、
-        // ここで設定した値は次のリクエストでも保持される
-        form.setEmployeeName(employee.getName());
-
         return "admin/account/confirm";
     }
 

@@ -15,6 +15,7 @@
     </resultMap>
 
    <!-- アカウント未作成の社員を社員ID順に取得する -->
+   <!-- 後ろのカッコ内の条件に一致しないデータだけを抽出する -->
     <select id="selectAllWithoutAccount" resultMap="employeeResultMap">
         <![CDATA[
             SELECT *

@@ -42,8 +42,10 @@
       useGeneratedKeysとkeyPropertyの指定により、serialで採番されたIDが
       引数のEntityのidフィールドに設定される。
     -->
-    <insert id="create" parameterType="com.example.fullness.stationary.entity.EmployeeAccount"
-            useGeneratedKeys="true" keyProperty="id">
+    <insert id="create" parameterType="com.example.fullness.stationary.entity.EmployeeAccount">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            <![CDATA[ select nextVAL('employee_account_id_seq')]]>
+        </selectKey>
         <![CDATA[
             INSERT INTO employee_account (employee_id, name, password)
             VALUES (#{employeeId}, #{name}, #{password})

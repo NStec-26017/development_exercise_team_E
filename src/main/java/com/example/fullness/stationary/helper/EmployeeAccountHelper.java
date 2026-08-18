@@ -1,6 +1,10 @@
 package com.example.fullness.stationary.helper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 
 import com.example.fullness.stationary.entity.EmployeeAccount;
 import com.example.fullness.stationary.form.EmployeeAccountForm;
@@ -20,6 +24,18 @@ import com.example.fullness.stationary.form.EmployeeAccountForm;
  */
 @Component
 public class EmployeeAccountHelper {
+
+    /**
+     * BindingResultのエラー内容をメッセージのリストに変換する。
+     * 
+     * @param bindingResult 入力チェック結果
+     * @return エラーメッセージのリスト
+     */
+    public List<String> toMessages(BindingResult bindingResult) {
+        return bindingResult.getFieldErrors().stream()
+                .map(error -> error.getDefaultMessage())
+                .collect(Collectors.toList());
+    }
 
     /**
      * 入力画面のFormを、登録用のEntityに変換する。

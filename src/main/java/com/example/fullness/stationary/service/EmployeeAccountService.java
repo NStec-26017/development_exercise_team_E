@@ -7,11 +7,7 @@ import com.example.fullness.stationary.entity.EmployeeAccount;
 
 /**
  * UC009「担当者アカウント登録」の業務機能を提供するServiceインターフェース。
- *
- * <p>
- * Serviceはインターフェース依存で設計・実装する。実装クラスは
- * {@link EmployeeAccountServiceImpl}。
- * </p>
+ * 
  */
 public interface EmployeeAccountService {
 
