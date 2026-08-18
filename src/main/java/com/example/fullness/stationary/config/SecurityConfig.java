@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -32,15 +31,16 @@ public class SecurityConfig {
 
                 // ログインにかかわる情報
                 .formLogin(login -> login
-                        // ログイン時のPost先URL
-                        .loginProcessingUrl("/admin/login")
+                        // Spring Security が認証を実行するURL
+                        .loginProcessingUrl("/admin/authenticate")
                         // ログイン画面表示URL
                         .loginPage("/admin/login")
                         .usernameParameter("accountName")
                         .passwordParameter("password")
                         // 認証成功時に表示するページ
                         .defaultSuccessUrl("/admin", true)
-                        .permitAll())
+                        // 認証失敗時のリダイレクト先
+                        .failureUrl("/admin/login?error").permitAll())
 
                 // ログアウトにかかわる情報
                 .logout(logout -> logout
