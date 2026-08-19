@@ -23,7 +23,7 @@ public class EmployeeLoginService implements UserDetailsService {
         EmployeeAccount account = employeeAccountRepository.selectByName(name);
         // アカウントが存在しない場合は、例外をスローして認証を失敗させる
         if (account == null) {
-            throw new UsernameNotFoundException("アカウントが見つかりません: " + name);
+            throw new UsernameNotFoundException("アカウントが見つかりません");
         }
         // 取得したデータを、Spring Securityが理解できる「UserDetails」型に変換して返却
         // ログイン状態として保持する名前

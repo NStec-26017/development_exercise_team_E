@@ -11,15 +11,13 @@ import com.example.fullness.stationary.entity.EmployeeAccount;
  */
 @Mapper
 public interface EmployeeAccountRepository {
+    /**
+     * 全件取得
+     * 
+     * @return 全社員のリスト
+     */
     List<EmployeeAccount> selectAll();
 
     EmployeeAccount selectByName(String name);
 
-    /**
-     * アカウント新規登録
-     * 
-     * @param employeeAccount
-     * @return
-     */
-    int insert(EmployeeAccount employeeAccount);
 }

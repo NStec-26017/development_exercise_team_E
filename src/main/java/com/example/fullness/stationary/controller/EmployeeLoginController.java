@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 // @RequestMapping("/admin/login")
 public class EmployeeLoginController {
     /**
-     * BP003「アカウント登録(完了)」画面表示
+     * ログイン画面表示
      * 
      */
     @GetMapping("/admin/login")
