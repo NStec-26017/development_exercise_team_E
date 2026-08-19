@@ -20,8 +20,12 @@ import com.example.fullness.stationary.entity.Employee;
 import com.example.fullness.stationary.entity.EmployeeAccount;
 import com.example.fullness.stationary.exception.BusinessException;
 import com.example.fullness.stationary.form.EmployeeAccountForm;
+import com.example.fullness.stationary.form.EmployeeAccountForm.GroupA;
+import com.example.fullness.stationary.form.EmployeeAccountForm.GroupB;
 import com.example.fullness.stationary.helper.EmployeeAccountHelper;
 import com.example.fullness.stationary.service.EmployeeAccountService;
+
+import jakarta.validation.GroupSequence;
 
 import java.util.List;
 
@@ -38,6 +42,10 @@ public class EmployeeRegisterController {
 
     @Autowired
     private EmployeeAccountHelper employeeAccountHelper;
+
+    // @GroupSequence({ GroupA.class, GroupB.class })
+    // static interface GroupOrder {
+    // };
 
     /**
      * Form初期化
@@ -72,9 +80,17 @@ public class EmployeeRegisterController {
     public String confirm(@Validated @ModelAttribute("form") EmployeeAccountForm form,
             BindingResult bindingResult,
             Model model) {
+
+        // 入力チェックでエラーがある場合の処理（例外シナリオ）
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errorMessages",
-                    employeeAccountHelper.toMessages(bindingResult));
+            // 1. Helperを使ってエラーメッセージのリストを作成し、モデルに格納する
+            model.addAttribute("errorMessages", employeeAccountHelper.toMessages(bindingResult));
+
+            // 2. 画面のセレクトボックス表示に必要な「社員リスト」を再取得してモデルに格納する
+            // AI 意味が分かってないのですが、これがないとバリデーションが機能しないです。
+            List<Employee> employees = employeeAccountService.findEmployeesWithoutAccount();
+            model.addAttribute("employees", employees);
+
             return "admin/account/form";
         }
         return "admin/account/confirm";

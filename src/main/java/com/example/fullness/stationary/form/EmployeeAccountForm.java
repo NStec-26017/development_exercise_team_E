@@ -14,6 +14,15 @@ import java.io.Serializable;
 @Data
 public class EmployeeAccountForm implements Serializable {
 
+    /**
+     * 優先順位をつけたかったのですが、バリデーションが機能しなくなってしまったので後回しにします。
+     */
+    // public static interface GroupA {
+    // };
+
+    // public static interface GroupB {
+    // };
+
     /** 社員ID(社員名の選択肢で選ばれた値)。 */
     @NotNull(message = "社員名を選択してください")
     private Integer employeeId;

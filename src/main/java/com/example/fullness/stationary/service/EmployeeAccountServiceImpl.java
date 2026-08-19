@@ -43,21 +43,6 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
         return employeeRepository.findById(employeeId);
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * 処理の流れ:
-     * </p>
-     * <ol>
-     * <li>アカウント名が既に登録されていないか確認する</li>
-     * <li>登録済みであれば業務例外をスローしてControllerに通知する</li>
-     * <li>パスワードをハッシュ値化して再設定する</li>
-     * <li>社員アカウントを登録する</li>
-     * </ol>
-     */
-    // 登録(更新系)処理のため、クラスのreadOnly=trueを上書きして
-    // 書き込み可能なトランザクションにする
     @Transactional
     @Override
     public void create(EmployeeAccount employeeAccount) {
