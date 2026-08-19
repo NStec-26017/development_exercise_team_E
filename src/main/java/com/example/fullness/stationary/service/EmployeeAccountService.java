@@ -32,7 +32,7 @@ public interface EmployeeAccountService {
      * @param employeeId 社員ID
      * @return 社員情報。該当が無い場合はnull
      */
-    Employee findEmployeeById(Integer employeeId);
+    Employee findById(Integer employeeId);
 
     /**
      * 社員アカウントを新規登録する。

@@ -39,7 +39,7 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
     }
 
     @Override
-    public Employee findEmployeeById(Integer employeeId) {
+    public Employee findById(Integer employeeId) {
         return employeeRepository.findById(employeeId);
     }
 
@@ -63,7 +63,7 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
         // String password = employeeAccount.getPassword();
         // employeeAccount.setPassword(passwordEncoder.encode(password));
 
-        // employeeAccountRepository.create(employeeAccount);
+        employeeAccountRepository.create(employeeAccount);
     }
 
 }

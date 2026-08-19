@@ -16,18 +16,7 @@
         </association>
     </resultMap>
 
-    <!-- ログインで使う -->
-    <select id="selectAll" resultMap="employeeAccountResult">
-       <![CDATA[
-       SELECT * FROM employee_account
-       ]]>
-    </select>
-
-    <select id="selectByName" parameterType="string" resultMap="employeeAccountResult">
-        <![CDATA[
-        SELECT * FROM employee_account WHERE name = #{name}
-        ]]>
-    </select>
+    
 
 
     <!-- アカウント名の重複確認(UC009 担当者アカウント登録) -->

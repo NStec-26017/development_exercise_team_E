@@ -13,19 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.fullness.stationary.entity.Employee;
 import com.example.fullness.stationary.entity.EmployeeAccount;
 import com.example.fullness.stationary.exception.BusinessException;
 import com.example.fullness.stationary.form.EmployeeAccountForm;
-import com.example.fullness.stationary.form.EmployeeAccountForm.GroupA;
-import com.example.fullness.stationary.form.EmployeeAccountForm.GroupB;
+
 import com.example.fullness.stationary.helper.EmployeeAccountHelper;
 import com.example.fullness.stationary.service.EmployeeAccountService;
-
-import jakarta.validation.GroupSequence;
 
 import java.util.List;
 
@@ -81,18 +78,19 @@ public class EmployeeRegisterController {
             BindingResult bindingResult,
             Model model) {
 
-        // 入力チェックでエラーがある場合の処理（例外シナリオ）
+        // 入力チェックでエラーがある場合の処理
         if (bindingResult.hasErrors()) {
-            // 1. Helperを使ってエラーメッセージのリストを作成し、モデルに格納する
             model.addAttribute("errorMessages", employeeAccountHelper.toMessages(bindingResult));
 
-            // 2. 画面のセレクトボックス表示に必要な「社員リスト」を再取得してモデルに格納する
             // AI 意味が分かってないのですが、これがないとバリデーションが機能しないです。
             List<Employee> employees = employeeAccountService.findEmployeesWithoutAccount();
             model.addAttribute("employees", employees);
 
             return "admin/account/form";
         }
+
+        Employee employee = employeeAccountService.findById(form.getEmployeeId());
+        form.setEmployeeName(employee.getName());
         return "admin/account/confirm";
     }
 
@@ -129,12 +127,13 @@ public class EmployeeRegisterController {
     }
 
     /**
-     * 業務例外ハンドラ（アカウント名重複等）
+     * アカウント重複
      */
     @ExceptionHandler(BusinessException.class)
     public String handleBusinessException(BusinessException e,
             RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("errorMessages", List.of(e.getMessage()));
-        return "redirect:/admin/account/form";
+        redirectAttributes.addFlashAttribute("errorMessages",
+                List.of(e.getMessage()));
+        return "redirect:/admin/error";
     }
 }
