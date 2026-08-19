@@ -32,7 +32,7 @@
       引数のEntityのidフィールドに設定される。
     -->
     <insert id="create" parameterType="com.example.fullness.stationary.entity.EmployeeAccount">
-        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+        <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
             <![CDATA[ select nextVAL('employee_account_id_seq')]]>
         </selectKey>
         <![CDATA[
