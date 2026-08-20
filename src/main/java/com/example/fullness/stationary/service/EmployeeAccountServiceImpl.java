@@ -2,7 +2,7 @@ package com.example.fullness.stationary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-// import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,9 +29,9 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
     @Autowired
     EmployeeAccountRepository employeeAccountRepository;
 
-    // /** パスワードのハッシュ値化を行うPasswordEncoder(SecurityConfigでBean登録)。 */
-    // @Autowired
-    // PasswordEncoder passwordEncoder;
+    /** パスワードのハッシュ値化を行うPasswordEncoder(SecurityConfigでBean登録)。 */
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public List<Employee> findEmployeesWithoutAccount() {
@@ -60,8 +60,8 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
         // ハッシュ値化した値で上書きする。
         // ハッシュ値は元に戻せないため、ログイン時は入力値を同じ方式で
         // ハッシュ値化して照合する
-        // String password = employeeAccount.getPassword();
-        // employeeAccount.setPassword(passwordEncoder.encode(password));
+        String password = employeeAccount.getPassword();
+        employeeAccount.setPassword(passwordEncoder.encode(password));
 
         employeeAccountRepository.create(employeeAccount);
     }
