@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -26,8 +27,25 @@ public class EmployeeRepositoryTest {
     public void selectAllWithoutAccountTest_OK() {
         List<Employee> actual = employeeRepository.selectAllWithoutAccount();
 
-        // アカウント未作成の社員2人が取得できる
+        assertNotNull(actual);
         assertEquals(2, actual.size());
+
+        // IDでソートして順序を保証
+        List<Employee> sortedActual = actual.stream()
+                .sorted(Comparator.comparing(Employee::getId))
+                .toList();
+
+        Employee employee1 = sortedActual.get(0);
+        assertEquals(104, employee1.getId());
+        assertEquals("豆田豆蔵", employee1.getName());
+        assertEquals("マメタマメゾウ", employee1.getNameKana());
+        assertEquals(1004, employee1.getDepartmentId());
+
+        Employee employee2 = sortedActual.get(1);
+        assertEquals(105, employee2.getId());
+        assertEquals("空田豆雄", employee2.getName());
+        assertEquals("ソラタマメオ", employee2.getNameKana());
+        assertEquals(1005, employee2.getDepartmentId());
     }
 
     @Test

@@ -40,10 +40,6 @@ public class EmployeeRegisterController {
     @Autowired
     private EmployeeAccountHelper employeeAccountHelper;
 
-    // @GroupSequence({ GroupA.class, GroupB.class })
-    // static interface GroupOrder {
-    // };
-
     /**
      * Form初期化
      * リクエストハンドラメソッド実行前に自動呼び出し
@@ -82,7 +78,6 @@ public class EmployeeRegisterController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errorMessages", employeeAccountHelper.toMessages(bindingResult));
 
-            // AI 意味が分かってないのですが、これがないとバリデーションが機能しないです。
             List<Employee> employees = employeeAccountService.findEmployeesWithoutAccount();
             model.addAttribute("employees", employees);
 
