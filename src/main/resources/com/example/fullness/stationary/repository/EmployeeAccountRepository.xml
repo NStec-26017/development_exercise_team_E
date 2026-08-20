@@ -41,4 +41,24 @@
         ]]>
     </insert>
 
+    <resultMap id="EmployeeAccountResultMap" type="com.example.fullness.stationary.entity.EmployeeAccount">
+        <id property="id" column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="EmployeeAccountResultMap">
+       <![CDATA[
+       SELECT * FROM employee_account
+       ]]>
+    </select>
+
+    <select id="selectByName" parameterType="string" resultMap="EmployeeAccountResultMap">
+        <![CDATA[
+        SELECT * FROM employee_account WHERE name = #{name}
+        ]]>
+    </select>
+
+    
 </mapper>

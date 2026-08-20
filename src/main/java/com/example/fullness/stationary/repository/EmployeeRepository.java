@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.fullness.stationary.entity.Employee;
 
 /**
- * 社員テーブルに対するデータアクセスを提供するRepository。
+ * 社員テーブル({@link Employee})に対するデータアクセスを提供するRepository。
  */
 @Mapper
 public interface EmployeeRepository {
@@ -28,4 +28,18 @@ public interface EmployeeRepository {
      */
     Employee findById(Integer id);
 
+    /**
+     * 全件取得
+     * 
+     * @return 全社員のリスト
+     */
+    List<Employee> selectAll();
+
+    /**
+     * pk で1件取得
+     * 
+     * @param id
+     * @return 該当する社員
+     */
+    Employee selectById(Integer id);
 }

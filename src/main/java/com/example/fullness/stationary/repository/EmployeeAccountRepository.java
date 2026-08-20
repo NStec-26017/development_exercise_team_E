@@ -1,5 +1,7 @@
 package com.example.fullness.stationary.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.fullness.stationary.entity.EmployeeAccount;
@@ -20,5 +22,14 @@ public interface EmployeeAccountRepository {
      *
      */
     Boolean create(EmployeeAccount employeeAccount);
+
+    /**
+     * 全件取得
+     * 
+     * @return 全社員のリスト
+     */
+    List<EmployeeAccount> selectAll();
+
+    EmployeeAccount selectByName(String name);
 
 }
