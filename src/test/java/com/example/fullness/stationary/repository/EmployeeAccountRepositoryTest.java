@@ -1,5 +1,7 @@
 package com.example.fullness.stationary.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -23,6 +25,7 @@ public class EmployeeAccountRepositoryTest {
 
         Assertions.assertNotNull(actual);
         Assertions.assertFalse(actual.isEmpty());
+        assertEquals(3, actual.size());
 
         EmployeeAccount employeeAccount = actual.get(0);
         Assertions.assertEquals(1, employeeAccount.getId());
