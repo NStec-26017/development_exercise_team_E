@@ -1,10 +1,7 @@
 package com.example.fullness.stationary.controller;
 
-<<<<<<< HEAD
-=======
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
->>>>>>> main
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MenuController {
 
     @GetMapping()
-<<<<<<< HEAD
-    public String showMenu() {
-
-        return "admin/menu";
-    }
-}
-=======
     public String showMenu(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         // ログインしていればtrue
         model.addAttribute("loggedIn", userDetails != null);
@@ -38,4 +28,3 @@ public class MenuController {
         return "admin/menu";
     }
 }
->>>>>>> main

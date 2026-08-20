@@ -1,5 +1,6 @@
 package com.example.fullness.stationary.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,10 +24,10 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void selectAllWithoutAccountTest_OK() {
-        List<Employee> employees = employeeRepository.selectAllWithoutAccount();
+        List<Employee> actual = employeeRepository.selectAllWithoutAccount();
 
-        Assertions.assertNotNull(employees);
-        Assertions.assertTrue(employees.size() > 0);
+        // アカウント未作成の社員2人が取得できる
+        assertEquals(2, actual.size());
     }
 
     @Test
