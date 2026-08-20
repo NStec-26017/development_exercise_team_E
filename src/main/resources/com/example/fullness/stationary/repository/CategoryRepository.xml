@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.fullness.stationary.repository.CategoryRepository">
+
+
+    <!--カテゴリ名の重複確認-->
+    <select id="existByName" resultType="Boolean">
+        <![CDATA[
+            SELECT COUNT(*) > 0 FROM product_category WHERE name = #{name}
+        ]]>
+</select>
+
+    <!--
+      カテゴリ名を新規登録する。
+      useGeneratedKeysとkeyPropertyの指定により、serialで採番されたIDが
+      引数のEntityのidフィールドに設定される。
+    -->
+
+    <insert id="create" parameterType="com.example.fullness.stationary.entity.ProductCategory">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            <![CDATA[ select nextVAL('product_category_id_seq')]]>  <!--product_category_id_seq
+            → 商品カテゴリ専用のシーケンス-->
+        </selectKey>
+        <![CDATA[
+            INSERT INTO product_category (id, name)
+            VALUES (#{id}, #{name})
+        ]]>
+    </insert>
+
+
+</mapper>
