@@ -11,7 +11,7 @@ import com.example.fullness.stationary.repository.ProductCategoryRepository;
 public class ProductCategoryService {
 
     @Autowired
-    private ProductCategoryRepository categoryrepository;
+    private ProductCategoryRepository productcategoryrepository;
 
     /**
      * 新しい商品カテゴリーを登録する業務処理
@@ -21,13 +21,13 @@ public class ProductCategoryService {
 
         // 1. 【業務チェック】すでに同じ名前のカテゴリがないか調べる
         // (※以前作成したexistsByNameのような仕組みをここで使う)
-        if (categoryrepository.existByName(productCategory.getName())) {
+        if (productcategoryrepository.existByName(productCategory.getName())) {
             throw new RuntimeException("このカテゴリー名はすでに登録されています。");
         }
 
         // 2. 【データベース保存】問題なければ、XMLに書いたcreateメソッドを呼び出す
         // (ここで自動的にシーケンスからIDが取られ、INSERTされる)
-        Boolean isSuccess = categoryrepository.create(productCategory);
+        Boolean isSuccess = productcategoryrepository.create(productCategory);
 
         // 3. 【結果の確認】もし保存に失敗していたらエラーを発生させる
         if (!isSuccess) {
