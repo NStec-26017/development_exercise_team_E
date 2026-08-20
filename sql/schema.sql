@@ -63,7 +63,7 @@ create table product(
 	
 );
 
-//product_stockテーブル作成
+//product_stockテーブル作成.
 create table product_stock(
 	id SERIAL PRIMARY KEY ,
 	product_id integer ,
