@@ -148,3 +148,13 @@ INSERT INTO product (id , product_category_id, name, price, image_url,) VALUES
 (29, 10002 , 'ハンカチ', 200, 'cloth.jpg'),
 (30, 10002 , 'キーリング', 100, 'keyholder.jpg'),
 (31, 10002 ,'キーホルダー', 100, 'keyholder2.jpg');
+drop sequence if exists employee_account ;
+drop sequence if exists employee ;
+drop sequence if exists order_detail ;
+drop sequence if exists product_stock ;
+drop sequence if exists product ;
+drop sequence if exists orders ;
+drop sequence if exists order_status ;
+drop sequence if exists payment_method ;
+drop sequence if exists product_category ;
+drop sequence if exists customer ;
