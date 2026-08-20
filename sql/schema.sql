@@ -120,3 +120,29 @@ create table order_detail(
 	FOREIGN KEY (product_id)
 	    REFERENCES product(id) 
 ) ;
+
+insert into department (id,name) values (1001,'商品管理課');
+
+insert into department (id,name) values (1002,'品質管理課');
+
+insert into department (id,name) values (1003,'製品管理課');
+
+insert into department (id,name) values (1004,'プロダクト管理課');
+
+insert into department (id,name) values (1005,'人事課');
+
+insert into employee (id,department_id,name,name_kana) values (101,1001,'フルネス太郎','フルネスタロウ');
+
+insert into employee (id,department_id,name,name_kana) values (102,1002,'フルネス次郎','フルネスジロウ');
+
+insert into employee (id,department_id,name,name_kana) values (103,1003,'フルネス三郎','フルネスサブロウ');
+
+insert into employee (id,department_id,name,name_kana) values (104,1004,'豆田豆蔵','マメタマメゾウ');
+
+insert into employee (id,department_id,name,name_kana) values (105,1005,'空田豆雄','ソラタマメオ');
+
+insert into employee_account (id,employee_id,name,password) values (1,101,'fullness','$2a$12$KYP1pth4anLhFgsF2dCp4eD/DOhhpXflfE9FDsW5WGx6PNivOB00a');
+
+insert into employee_account (id,employee_id,name,password) values (2,102,'NSTec','$2a$12$HkA9.GfY4onzhJCrhVF4jeDgQS/tGK4hWrGifAUjAerO0bI9SJJ4K');
+
+insert into employee_account (id,employee_id,name,password) values (3,103,'NSTecfullness2026002','$2a$12$5y0.etr41KXCnu8qJXjXM.MEpK87Kt1ZIIPH9nmOqSvOwkIBN7a9G');

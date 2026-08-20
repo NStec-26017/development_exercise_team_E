@@ -31,7 +31,8 @@ public class EmployeeAccountRepositoryTest {
         Assertions.assertEquals(1, employeeAccount.getId());
         Assertions.assertEquals(101, employeeAccount.getEmployeeId());
         Assertions.assertEquals("fullness", employeeAccount.getName());
-        Assertions.assertEquals("$2a$12$KYP1pth4anLhFgsF2dCp4eD/DOhhpXflfE9FDsW5WGx6PNivOB00a", employeeAccount.getPassword());
+        Assertions.assertEquals("$2a$12$KYP1pth4anLhFgsF2dCp4eD/DOhhpXflfE9FDsW5WGx6PNivOB00a",
+                employeeAccount.getPassword());
     }
 
     @Test
