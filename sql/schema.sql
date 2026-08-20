@@ -88,7 +88,7 @@ create table payment_method(
 
 )
 
-//ordersテーブル作成.
+//ordersテーブル作成
 create table orders(
 	id SERIAL PRIMARY KEY ,
 	customer_id integer ,
