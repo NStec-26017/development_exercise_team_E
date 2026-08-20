@@ -31,7 +31,8 @@ public class EmployeeAccountRepositoryTest {
         Assertions.assertEquals(1, employeeAccount.getId());
         Assertions.assertEquals(101, employeeAccount.getEmployeeId());
         Assertions.assertEquals("fullness", employeeAccount.getName());
-        Assertions.assertEquals("fullness", employeeAccount.getPassword());
+        Assertions.assertEquals("$2a$12$KYP1pth4anLhFgsF2dCp4eD/DOhhpXflfE9FDsW5WGx6PNivOB00a",
+                employeeAccount.getPassword());
     }
 
     @Test
@@ -45,7 +46,7 @@ public class EmployeeAccountRepositoryTest {
         Integer expectedId = 1;
         Integer expectedEmployeeId = 101;
         String expectedName = "fullness";
-        String expectedPassword = "fullness";
+        String expectedPassword = "$2a$12$KYP1pth4anLhFgsF2dCp4eD/DOhhpXflfE9FDsW5WGx6PNivOB00a";
 
         Assertions.assertEquals(expectedId, actual.getId());
         Assertions.assertEquals(expectedEmployeeId, actual.getEmployeeId());
