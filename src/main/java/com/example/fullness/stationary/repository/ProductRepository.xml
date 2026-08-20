@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
+  
+  <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる -->
+    <select id="selectById" resultType="com.example.fullness.stationary.entity.Product">
+        <![CDATA[ 
+        SELECT 
+            id,
+            product_category_id AS productCategoryId,
+            name,
+            price,
+            image_url AS imageUrl,
+            delete_flag AS deleteFlag
+        FROM product WHERE id = #{id}
+        AND delete_flag = 0
+        ]]> 
+    </select>
+
+<!-- ↑   image_url AS imageUrlこういうことすべき？？delete_flagってなに？-->
+
+    <!-- 修正して「完了」ボタンを押したとき：商品データを上書き更新する -->
+    <update id="updateProduct">
+        <![CDATA[ 
+        UPDATE product 
+        SET product_category_id = #{productCategoryId},
+            name = #{name},
+            price = #{price},
+            image_url = #{imageUrl} 
+        WHERE id = #{id}
+        AND delete_flag = 0
+        ]]> 
+    </update>
+
+    <!-- 修正して「完了」ボタンを押したとき：在庫データを上書き更新する -->
+    <update id="updateStock">
+        <![CDATA[ 
+        UPDATE product_stock 
+        SET quantity = #{quantity}
+        WHERE product_id = #{productId}
+        ]]> 
+    </update>
+
+
+    <!-- 確認画面へ進むとき：選択されたカテゴリIDが本当にマスタに存在するかチェックする -->
+    <select id="exsistsCategory" resultType="boolean">
+        <![CDATA[ 
+        SELECT COUNT(*) > 0 
+        FROM product_category 
+        WHERE id = #{categoryId}
+        ]]> 
+    </select>
+    <!-- ↑SELECT COUNT(*) > 0 の部分理解してない -->
+
+    <!-- カテゴリをプルダウンに表示するために、すべてのカテゴリーマスタを取得する -->
+        
+       <select id ="selectAllCategories" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[ 
+        SELECT 
+            id,
+            name
+        FROM product_category
+        ]]> 
+    </select>
+</mapper>
