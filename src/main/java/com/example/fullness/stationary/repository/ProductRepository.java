@@ -11,8 +11,6 @@ import com.example.fullness.stationary.entity.ProductStock;
 
 @Mapper
 public interface ProductRepository {
-    // ↓いらなそうだけど一応置いてる
-    List<Product> selectAll();
 
     // 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる
     Product selectById(Integer id);

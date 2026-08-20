@@ -14,6 +14,7 @@ import com.example.fullness.stationary.helper.ImageEditHelper;
 
 /*
  * UC012 「商品修正」のServiceクラス
+ * 作業中
  */
 
 @Service
