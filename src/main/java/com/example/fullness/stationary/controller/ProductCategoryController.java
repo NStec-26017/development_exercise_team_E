@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.example.fullness.stationary.entity.ProductCategory;
 import com.example.fullness.stationary.form.CategoryForm;
@@ -24,7 +25,7 @@ import jakarta.servlet.http.HttpSession;
  */
 
 @Controller
-@SessionAttributes("CategoryForm")
+@SessionAttributes("form")
 public class ProductCategoryController {
 
     @Autowired
@@ -34,49 +35,38 @@ public class ProductCategoryController {
      * Form初期化
      * リクエストハンドラメソッド実行前に自動呼び出し
      */
-    @ModelAttribute("Form")
+    @ModelAttribute("form")
     public CategoryForm setUpForm() {
         return new CategoryForm();
     }
 
     // 画面BP019商品カテゴリ登録(入力)画面を表示する(Get)
-    @GetMapping("admin/category/add")
-    public String showPage(HttpSession session, Model model) {
-        CategoryForm form = (CategoryForm) session.getAttribute("sessioncategoryform");
-        if (form == null) {
-            form = new CategoryForm();
+    @GetMapping("/admin/category/add")
+    public String showPage(@ModelAttribute("form") CategoryForm form, HttpSession session, Model model) {
+        CategoryForm sessionForm = (CategoryForm) session.getAttribute("form");
+        if (sessionForm != null) {
+            form.setName(sessionForm.getName());
         }
         model.addAttribute("form", form);
-        return "admin/category/form"; // Thymeleafの画面名を返すだけ
+        return "admin/category/form";
     }
 
     // BP019商品カテゴリ登録(入力)画面→BP020商品カテゴリ登録(確認)画面に遷移
     @PostMapping("/admin/category/add")
-    public String changepage(CategoryForm form, HttpSession session, Model model) {
-        // 引数に CategoryForm を定義しておくだけで、
-        // 確認画面から送られてきたデータが自動的に保持され、入力画面に引き継がれる。
-        session.setAttribute("sessioncategoryform", form);
-        // 入力画面のHTMLテンプレート名を返す
-
+    public String changepage(@ModelAttribute("form") CategoryForm form, HttpSession session, Model model) {
+        session.setAttribute("form", form);
+        model.addAttribute("form", form);
         return "redirect:/admin/category/add/confirm";
-        // ↑↑ここはURLがadd→confirmに変わるからresirectでURLを指定する↑↑
-
     }
 
     // BP020商品カテゴリ登録(確認)画面を表示
-    @GetMapping("admin/category/add/confirm")
-    public String page(HttpSession session, Model model) {
-        model.addAttribute("form", session.getAttribute("sessioncategoryform"));
-        // 引数に CategoryForm を定義しておくだけで、
-        // 確認画面から送られてきたデータが自動的に保持され、入力画面に引き継がれる。
-
-        // // 【バリデーション】入力チェックに引っかかった場合
-        // if (result.hasErrors()) {
-        // // エラー情報を持ったまま、もう一度「入力画面」に戻す
-        // return "redirect:admin/category/form";
-        // // ↑↑ここでは表示したいhtmlの場所を指定する↑↑
-        // }
-
+    @GetMapping("/admin/category/add/confirm")
+    public String page(@ModelAttribute("form") CategoryForm form, HttpSession session, Model model) {
+        CategoryForm sessionForm = (CategoryForm) session.getAttribute("form");
+        if (sessionForm != null) {
+            form.setName(sessionForm.getName());
+        }
+        model.addAttribute("form", form);
         return "admin/category/confirm";
     }
 
@@ -85,18 +75,22 @@ public class ProductCategoryController {
     // データを登録する、セッション情報を消す(自分が登録したキーだけ)
     public String nextgpage(
             @RequestParam(name = "action", required = false) String action,
+            @ModelAttribute("form") CategoryForm form,
             HttpSession session,
-            Model model) {
+            SessionStatus sessionStatus) {
 
-        // if ("back".equals(action)) {
-        // session.setAttribute("sessioncategoryform", form);
-        // return "redirect:/admin/category/add";
-        // }
+        if ("back".equals(action)) {
+            session.setAttribute("form", form);
+            return "redirect:/admin/category/add";
+        }
 
-        CategoryForm categoryForm = (CategoryForm) session.getAttribute("sessioncategoryform");
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setName(categoryForm.getName());
+        productCategory.setName(form.getName());
         productcategoryservice.registerCategory(productCategory);
+
+        session.setAttribute("registeredCategoryName", form.getName());
+        sessionStatus.setComplete();
+        session.removeAttribute("form");
 
         return "redirect:/admin/category/add/complete";
     }
@@ -104,20 +98,13 @@ public class ProductCategoryController {
     // 画面BP021商品カテゴリ登録(完了)画面を表示
     @GetMapping("/admin/category/add/complete")
     public String lastPage(HttpSession session, Model model) {
-        CategoryForm categoryForm = (CategoryForm) session.getAttribute("sessioncategoryform");
-        model.addAttribute("categoryName", categoryForm.getName());
+        String categoryName = (String) session.getAttribute("registeredCategoryName");
+        if (categoryName == null) {
+            categoryName = "";
+        }
+        model.addAttribute("categoryName", categoryName);
 
-        return "admin/category/complete"; // Thymeleafの画面名を返すだけ
+        return "admin/category/complete";
     }
 
-    // 確認画面→入力画面に戻る
-    // @PostMapping("/admin/category/add")
-    // public String back(CategoryForm form, HttpSession session, Model model) {
-    // // 引数に CategoryForm を定義しておくだけで、
-    // // 確認画面から送られてきたデータが自動的に保持され、入力画面に引き継がれる。
-    // session.setAttribute("sessioncategoryform", form);
-    // // 入力画面のHTMLテンプレート名を返す
-
-    // return "redirect:/admin/category/add/confirm";
-    // }
 }
