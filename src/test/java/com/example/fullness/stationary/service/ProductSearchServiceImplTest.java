@@ -5,7 +5,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,16 +32,20 @@ public class ProductSearchServiceImplTest {
 
     @Test
     public void getProductCategories() {
-        ProductCategory category = new ProductCategory();
-        category.setId(10001);
-        category.setName("文具");
+        ProductCategory category1 = new ProductCategory();
+        category1.setId(10001);
+        category1.setName("文具");
 
-        category.setId(10002);
-        category.setName("雑貨");
+        ProductCategory category2 = new ProductCategory();
+        category2.setId(10002);
+        category2.setName("雑貨");
 
-        category.setId(10003);
-        category.setName("パソコン周辺機器");
-        List<ProductCategory> expected = List.of(category);
+        ProductCategory category3 = new ProductCategory();
+
+        category3.setId(10003);
+        category3.setName("パソコン周辺機器");
+
+        List<ProductCategory> expected = Arrays.asList(category1, category2, category3);
 
         when(productCategoryRepository.selectAll()).thenReturn(expected);
 
