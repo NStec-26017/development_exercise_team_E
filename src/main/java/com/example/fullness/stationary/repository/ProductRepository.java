@@ -9,6 +9,11 @@ import com.example.fullness.stationary.entity.Product;
 import com.example.fullness.stationary.entity.ProductCategory;
 import com.example.fullness.stationary.entity.ProductStock;
 
+
+/*
+Repositoryはproductとproduct_stockをそれぞれつくらなきゃいけない
+*/ 
+
 @Mapper
 public interface ProductRepository {
 
