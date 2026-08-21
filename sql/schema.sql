@@ -3,7 +3,7 @@ INSERT INTO product_category (id , name) VALUES (10001 , '文具');
 INSERT INTO product_category (id , name) VALUES (10002 , '雑貨');
 INSERT INTO product_category (id , name) VALUES (10003 , 'パソコン周辺機器');
 
-INSERT INTO product (id , product_category_id, name, price, image_url,) VALUES 
+INSERT INTO product(id , product_category_id, name, price, image_url) VALUES 
 (11, 10001 , '黒鉛筆', 150, 'black_pen.jpg'),
 (12, 10001 , '黒ボールペン', 150, 'black_pen_o.jpg'),
 (13, 10001 , '赤ボールペン', 150, 'red_pen_o.jpg'),
