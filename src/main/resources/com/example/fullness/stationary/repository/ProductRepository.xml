@@ -3,6 +3,7 @@
 
 <mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
 
+<<<<<<< HEAD
     <resultMap id="productResult" type = "com.example.fullness.stationary.entity.Product">
             <id property="id" column="id"/>
             <result property="productCategoryId" column="product_category_id"/>
@@ -15,6 +16,11 @@
     <select id="selectAll" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[
             SELECT
+=======
+    <select id="selectAll" resultType="com.example.fullness.stationary.entity.Product">
+        <![CDATA[
+            SELECT 
+>>>>>>> origin/main
             id AS id ,
             product_category_id AS productCategoryId ,
             name AS name ,
@@ -22,7 +28,11 @@
             CONCAT('/images/', image_url) AS imagePath ,
             delete_flag AS deleteFlag
 
+<<<<<<< HEAD
             FROM product
+=======
+            FROM product 
+>>>>>>> origin/main
             ORDER BY id
             LIMIT 10 OFFSET #{offset}
         ]]>
@@ -30,7 +40,11 @@
 
     <select id="findByCategoryId" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[
+<<<<<<< HEAD
             SELECT
+=======
+            SELECT 
+>>>>>>> origin/main
             id AS id ,
             product_category_id AS productCategoryId ,
             name AS name ,
@@ -38,7 +52,11 @@
             CONCAT('/images/', image_url) AS imagePath ,
             delete_flag AS deleteFlag
 
+<<<<<<< HEAD
             FROM product
+=======
+            FROM product 
+>>>>>>> origin/main
             WHERE product_category_id = #{categoryId}
             ORDER BY id
             LIMIT 10 OFFSET #{offset}
@@ -57,6 +75,7 @@
         ]]>
     </select>
 
+<<<<<<< HEAD
     <delete id="deleteById" >
         <![CDATA[
         DELETE FROM product
@@ -64,4 +83,6 @@
         ]]>
     </delete>
 
+=======
+>>>>>>> origin/main
 </mapper>

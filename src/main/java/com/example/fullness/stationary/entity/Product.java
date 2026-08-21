@@ -7,6 +7,7 @@ import lombok.Data;
 /**
  * 商品(product)テーブル用entityクラス
  *
+ * 
  */
 @Data
 public class Product implements Serializable {

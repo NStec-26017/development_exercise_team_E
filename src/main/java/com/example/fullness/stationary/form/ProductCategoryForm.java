@@ -13,4 +13,8 @@ public class ProductCategoryForm implements Serializable {
     /** 商品カテゴリ名 */
     private String name;
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main

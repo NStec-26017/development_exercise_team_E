@@ -19,4 +19,8 @@ public class ProductForm implements Serializable {
     /** 削除フラグ */
     private Integer deleteFlag;
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main

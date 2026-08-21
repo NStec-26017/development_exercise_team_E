@@ -22,6 +22,9 @@ public interface ProductRepository {
 
     int countByCategoryId(
             @Param("categoryId") Integer categoryId);
+<<<<<<< HEAD
 
     int deleteById(int id);
+=======
+>>>>>>> origin/main
 }
