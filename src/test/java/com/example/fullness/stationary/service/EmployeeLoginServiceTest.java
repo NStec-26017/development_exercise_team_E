@@ -44,7 +44,7 @@ public class EmployeeLoginServiceTest {
     }
 
     @Test
-    public void loadUserByUsernameTest() {
+    public void notUserName() {
         when(employeeAccountRepository.selectByName("mamezou")).thenReturn(null);
 
         assertThatThrownBy(() -> employeeLoginService.loadUserByUsername("mamezou"))
