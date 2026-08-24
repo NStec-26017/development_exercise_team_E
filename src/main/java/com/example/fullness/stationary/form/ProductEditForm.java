@@ -2,8 +2,6 @@ package com.example.fullness.stationary.form;
 
 import java.io.Serializable;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -41,11 +39,8 @@ public class ProductEditForm implements Serializable {
     @NotNull(message = "カテゴリを選択してください")
     private Integer categoryId;
 
-    // // 5. 画像ファイル（画面からアップロードされたファイルそのものを受け取る）わからない
-    // private MultipartFile imageFile;
-
-    // 6. 現在登録されている画像のパス・URL（確認画面での表示や、画像が変更されない場合に使用）
+    // 5. 現在登録されている画像のパス・URL（確認画面での表示や、画像が変更されない場合に使用）
     private String imagePath;
 
-    // ＋DeleteFlag追加
+    // 6.DeleteFlag追加
 }
