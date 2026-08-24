@@ -11,4 +11,21 @@ import com.example.fullness.stationary.entity.ProductCategory;
 @Repository
 public interface ProductCategoryRepository {
     List<ProductCategory> selectAll();
+
+    /**
+     * uc010
+     * 商品カテゴリを全件取得する
+     * 
+     */
+    List<ProductCategory> selectAllOrderByIdTen();
+
+    /**
+     * uc010
+     * 商品カテゴリIDを指定して商品カテゴリを１件取得する
+     * 
+     * @param id
+     * @return
+     */
+    ProductCategory selectByIdTen(Integer id);
+
 }

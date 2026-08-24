@@ -22,4 +22,30 @@ public interface ProductRepository {
 
         int countByCategoryId(
                         @Param("categoryId") Integer categoryId);
+
+        /**
+         * uc010
+         * 商品を1件登録する
+         * 
+         * @param product
+         * @return
+         */
+        Boolean createTen(Product product);
+
+        /**
+         * uc010
+         * 商品IDを指定して商品を1件取得する
+         * 
+         * @param id
+         * @return
+         */
+        Product selectByIdTen(Integer id);
+
+        /**
+         * uc010
+         * 商品の全件取得
+         * 
+         * @return
+         */
+        List<Product> selectAllTen();
 }

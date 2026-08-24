@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.fullness.stationary.repository.ProductStockRepository">
+ 
+ <!-- uc010 商品在庫を 1 件登録する。 -->
+    <insert id="createTen"
+            resultType="com.example.fullness.stationary.entity.ProductStock"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id">
+        <![CDATA[
+            INSERT INTO product_stock
+                (product_id, quantity)
+            VALUES
+                (#{productId}, #{quantity})
+        ]]>
+    </insert>
+
+    <!-- uc010 商品IDを指定して商品在庫を 1 件取得する。 -->
+    <select id="selectByProductId" resultType="com.example.fullness.stationary.entity.ProductStock">
+        <![CDATA[
+            SELECT
+                  id         AS id
+                , product_id AS productId
+                , quantity   AS quantity
+            FROM product_stock
+            WHERE product_id = #{productId}
+        ]]>
+    </select>
+</mapper>

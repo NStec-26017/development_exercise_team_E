@@ -48,4 +48,51 @@
         ]]>
     </select>
 
+
+    <!-- uc010 商品を 1 件登録する。-->
+    <insert id="createTen"
+            resultType="com.example.fullness.stationary.entity.Product"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id">
+        <![CDATA[
+            INSERT INTO product
+                (product_category_id, name, price, image_url, delete_flag)
+            VALUES
+                (#{productCategoryId}, #{name}, #{price}, #{imageUrl}, #{deleteFlag})
+        ]]>
+    </insert>
+
+    <!--  uc010 商品IDを指定して 1 件取得する -->
+    <select id="selectByIdTen" resultType="com.example.fullness.stationary.entity.Product">
+        <![CDATA[
+            SELECT
+                  id                  AS id
+                , product_category_id AS productCategoryId
+                , name                AS name
+                , price               AS price
+                , image_url           AS imageUrl
+                , delete_flag         AS deleteFlag
+            FROM product
+            WHERE id = #{id}
+        ]]>
+    </select>
+
+    <!-- uc010 削除されていない商品を全件取得する。 -->
+    <select id="selectAllTen" resultType="com.example.fullness.stationary.entity.Product">
+        <![CDATA[
+            SELECT
+                  id                  AS id
+                , product_category_id AS productCategoryId
+                , name                AS name
+                , price               AS price
+                , image_url           AS imageUrl
+                , delete_flag         AS deleteFlag
+            FROM product
+            WHERE delete_flag = 0
+            ORDER BY id
+        ]]>
+    </select>
+
+
 </mapper>
