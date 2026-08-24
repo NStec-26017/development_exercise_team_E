@@ -13,6 +13,18 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Autowired
     private ProductCategoryRepository productcategoryrepository;
 
+    public Boolean duplicateCheck(ProductCategory productCategory) {
+
+        // 1. 【業務チェック】すでに同じ名前のカテゴリがないか調べる
+        // (※以前作成したexistsByNameのような仕組みをここで使う)
+        if (productcategoryrepository.existByName(productCategory.getName())) {
+
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * 新しい商品カテゴリーを登録する業務処理
      */

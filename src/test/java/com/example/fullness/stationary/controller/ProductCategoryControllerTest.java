@@ -19,7 +19,7 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.fullness.stationary.form.CategoryForm;
-import com.example.fullness.stationary.service.ProductCategoryService;
+import com.example.fullness.stationary.service.ProductCategoryServiceImpl;
 
 @WebMvcTest(ProductCategoryController.class)
 class ProductCategoryControllerTest {
@@ -28,7 +28,7 @@ class ProductCategoryControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ProductCategoryService productCategoryService;
+    private ProductCategoryServiceImpl productCategoryService;
 
     @Test
     @WithMockUser(username = "admin", roles = "ADMIN")

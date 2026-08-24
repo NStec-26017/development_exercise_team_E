@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.fullness.stationary.entity.ProductCategory;
 
-// カテゴリ名に対するデータアクセスを提供するRepositpry
+// カテゴリに対するデータアクセスを提供するRepositpry
 
 @Mapper
 @Repository
@@ -34,6 +34,5 @@ public interface ProductCategoryRepository {
     // @Options(useGeneratedKeys = true, keyProperty = "id")
     Boolean create(ProductCategory productcategory);
 
-    // データベースの自動採番の資料
-    // データベース側が自動的に採番される仕組みが入っているかを確認(テーブルに)
-}
+    
+    }

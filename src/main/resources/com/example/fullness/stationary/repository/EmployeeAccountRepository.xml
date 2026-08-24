@@ -3,6 +3,44 @@
 
 <mapper namespace="com.example.fullness.stationary.repository.EmployeeAccountRepository">
 
+    <!-- アカウントと社員を結合した結果のマッピング定義 -->
+    <resultMap id="employeeAccountResult" type="com.example.fullness.stationary.entity.EmployeeAccount">
+        <id     property="id"         column="id" />
+        <result property="employeeId" column="employee_id" />
+        <result property="name"       column="name" />
+        <result property="password"   column="password" />
+        <association property="employee" javaType="com.example.fullness.stationary.entity.Employee">
+            <id     property="id"       column="id" />
+            <result property="name"     column="name" />
+            <result property="nameKana" column="name_kana" />
+        </association>
+    </resultMap>
+
+    
+
+
+    <!-- アカウント名の重複確認(UC009 担当者アカウント登録) -->
+    <select id="existsByName" resultType="Boolean">
+        <![CDATA[
+            SELECT COUNT(*) > 0 FROM employee_account WHERE name = #{name}
+        ]]>
+    </select>
+
+    <!--
+      社員アカウントを新規登録する。
+      useGeneratedKeysとkeyPropertyの指定により、serialで採番されたIDが
+      引数のEntityのidフィールドに設定される。
+    -->
+    <insert id="create" parameterType="com.example.fullness.stationary.entity.EmployeeAccount">
+        <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+            <![CDATA[ select nextVAL('employee_account_id_seq')]]>
+        </selectKey>
+        <![CDATA[
+            INSERT INTO employee_account (employee_id, name, password)
+            VALUES (#{employeeId}, #{name}, #{password})
+        ]]>
+    </insert>
+
     <resultMap id="EmployeeAccountResultMap" type="com.example.fullness.stationary.entity.EmployeeAccount">
         <id property="id" column="id"/>
         <result property="employeeId" column="employee_id"/>

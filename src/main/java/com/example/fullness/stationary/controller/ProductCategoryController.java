@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.fullness.stationary.entity.ProductCategory;
 import com.example.fullness.stationary.form.CategoryForm;
 import com.example.fullness.stationary.service.ProductCategoryService;
+import com.example.fullness.stationary.service.ProductCategoryService;
+import com.example.fullness.stationary.service.ProductCategoryServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,7 +40,7 @@ import jakarta.validation.Valid;
 public class ProductCategoryController {
 
     @Autowired
-    ProductCategoryService productcategoryservice;
+    ProductCategoryService productCategoryService;
 
     /**
      * Form初期化
@@ -70,43 +72,33 @@ public class ProductCategoryController {
             RedirectAttributes redirectAttributes, HttpServletRequest request,
             HttpServletResponse response) {
 
-        System.out.println(form.getName().length());
-
         if (bindingResult.hasErrors()) {
             List<String> errorMessages = new ArrayList<>();
             bindingResult.getAllErrors().forEach(e -> errorMessages.add(e.getDefaultMessage()));
 
             model.addAttribute("errorMessages", errorMessages);
             model.addAttribute("form", form);
-            // redirectAttributes.addFlashAttribute("errorMessage", String.join(" ",
-            // errorMessages));
-            // redirectAttributes.addFlashAttribute("form", form);
 
-            // ログイン画面にリダイレクト
-            return "admin/category/form";
+            // 入力画面にリダイレクト
+            return "redirect:/admin/category/add";
         }
 
-        // }
-        // // 入力チェック
-        // if (bindingResult.hasErrors()) {
-        // return addValidationErrorPage(model, form, bindingResult);
-        // }
+        // 例外・カテゴリ名重複
+        // 小文字のインスタンス変数（productCategoryService）を使い、メソッド名を existByName に修正
 
-        session.setAttribute("form", form);
-        model.addAttribute("form", form);
-        return "redirect:/admin/category/add/confirm";
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setName(form.getName());
 
+        if (productCategoryService.duplicateCheck(productCategory)) {
+            List<String> errorMessages = new ArrayList<>();
+            errorMessages.add("このカテゴリ名は既に登録されています。");
+            // model.addAttribute("errorMessages",errorMessages);
+            redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
+            return "redirect:/admin/category/add";
+        }
+
+        return "admin/category/confirm";
     }
-
-    // private String addValidationErrorPage(Model model, CategoryForm form,
-    // BindingResult bindingResult) {
-    // List<String> errorMessages = new ArrayList<>();
-    // bindingResult.getAllErrors().forEach(error ->
-    // errorMessages.add(error.getDefaultMessage()));
-    // model.addAttribute("errorMessages", errorMessages);
-    // model.addAttribute("form", form);
-    // return "admin/category/form";
-    // }
 
     // BP020商品カテゴリ登録(確認)画面を表示
     @GetMapping("/admin/category/add/confirm")
@@ -150,7 +142,7 @@ public class ProductCategoryController {
 
         ProductCategory productCategory = new ProductCategory();
         productCategory.setName(form.getName());
-        productcategoryservice.registerCategory(productCategory);
+        productCategoryService.registerCategory(productCategory);
 
         session.setAttribute("registeredCategoryName", form.getName());
         sessionStatus.setComplete();
