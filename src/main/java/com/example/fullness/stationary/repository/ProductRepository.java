@@ -11,20 +11,21 @@ import com.example.fullness.stationary.entity.Product;
 @Mapper
 @Repository
 public interface ProductRepository {
-    List<Product> selectAll(
-            @Param("offset") int offset);
+        List<Product> selectAll(
+                        @Param("offset") int offset);
 
-    List<Product> findByCategoryId(
-            @Param("categoryId") Integer categoryId,
-            @Param("offset") int offset);
+        List<Product> findByCategoryId(
+                        @Param("categoryId") Integer categoryId,
+                        @Param("offset") int offset);
 
-    int countAll();
+        Product findById(@Param("id") Integer id);
 
-    int countByCategoryId(
-            @Param("categoryId") Integer categoryId);
-<<<<<<< HEAD
+        int countAll();
 
-    int deleteById(int id);
-=======
->>>>>>> origin/main
+        int countByCategoryId(
+                        @Param("categoryId") Integer categoryId);
+
+        int deleteById(int id);
+
+        void updateDeleteFlag(@Param("id") Integer id);
 }

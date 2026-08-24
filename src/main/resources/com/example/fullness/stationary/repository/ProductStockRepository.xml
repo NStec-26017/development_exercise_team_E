@@ -2,16 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.fullness.stationary.repository.ProductStockRepository">
-    <resultMap id="productStockResultMap" type = "com.example.fullness.stationary.entity.ProductStock">
-            <id property="id" column="id"/>
-            <result property="productId" column="product_id"/>
-            <result property="quantity" column="quantity"/>
+    <resultMap id="productStockResultMap" type="com.example.fullness.stationary.entity.ProductStock">
+        <id property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="quantity" column="quantity"/>
     </resultMap>
 
-    <select id="selectAll" resultMap="productStockResultMap">
-       <![CDATA[
-       SELECT * FROM product_stock
-       ]]>
+
+    <select id="selectProductStockJoin" resultType="java.util.HashMap">
+        <![CDATA[
+        SELECT
+            select p.id AS id,
+        p.product_category_id AS category_id,
+        p.name AS name,
+        p.price AS price,
+        p.image_url AS image_url,
+        p.delete_flag AS delete_flag,
+        pc.id AS id,
+        pc.name AS name,
+        ps.id AS id,
+        ps.product_id AS product_id,
+        ps.quantity AS quantity
+    FROM product p
+    INNER JOIN product_category pc ON p.product_category_id = pc.id
+    INNER JOIN product_stock ps ON p.id = ps.product_id
+        ]]>
+    </select>
+
+    <select id="findById" resultMap="productStockResultMap">
+        <![CDATA[
+        SELECT *
+        FROM product_stock
+        WHERE product_id = #{productId}
+        ]]>
     </select>
 
 </mapper>
