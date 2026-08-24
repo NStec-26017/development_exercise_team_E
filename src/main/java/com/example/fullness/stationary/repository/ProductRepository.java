@@ -30,7 +30,7 @@ public interface ProductRepository {
          * @param product
          * @return
          */
-        Boolean createTen(Product product);
+        int insertProductTen(Product product);
 
         /**
          * uc010
@@ -41,11 +41,4 @@ public interface ProductRepository {
          */
         Product selectByIdTen(Integer id);
 
-        /**
-         * uc010
-         * 商品の全件取得
-         * 
-         * @return
-         */
-        List<Product> selectAllTen();
 }

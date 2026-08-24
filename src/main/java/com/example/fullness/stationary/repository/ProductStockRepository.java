@@ -11,7 +11,7 @@ public interface ProductStockRepository {
      * @param productStock
      * @return
      */
-    Boolean createTen(ProductStock productStock);
+    int insertProductStockTen(ProductStock productStock);
 
     /**
      * uc010

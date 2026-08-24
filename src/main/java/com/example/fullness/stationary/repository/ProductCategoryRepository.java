@@ -17,7 +17,7 @@ public interface ProductCategoryRepository {
      * 商品カテゴリを全件取得する
      * 
      */
-    List<ProductCategory> selectAllOrderByIdTen();
+    List<ProductCategory> selectAllCategoryTen();
 
     /**
      * uc010

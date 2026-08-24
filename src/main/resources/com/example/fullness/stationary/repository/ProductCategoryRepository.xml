@@ -11,7 +11,7 @@
 
 
     <!-- uc010 商品カテゴリを全件取得する(カテゴリID の昇順)。 -->
-    <select id="selectAllOrderByIdTen" resultType="com.example.fullness.stationary.entity.ProductCategory">
+    <select id="selectAllCategoryTen" resultType="com.example.fullness.stationary.entity.ProductCategory">
         <![CDATA[
             SELECT
                   id   AS id

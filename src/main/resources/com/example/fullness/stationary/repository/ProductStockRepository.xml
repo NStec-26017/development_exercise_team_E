@@ -4,7 +4,7 @@
 <mapper namespace="com.example.fullness.stationary.repository.ProductStockRepository">
  
  <!-- uc010 商品在庫を 1 件登録する。 -->
-    <insert id="createTen"
+    <insert id="insertProductStockTen"
             resultType="com.example.fullness.stationary.entity.ProductStock"
             useGeneratedKeys="true"
             keyProperty="id"
@@ -18,7 +18,7 @@
     </insert>
 
     <!-- uc010 商品IDを指定して商品在庫を 1 件取得する。 -->
-    <select id="selectByProductId" resultType="com.example.fullness.stationary.entity.ProductStock">
+    <select id="selectByProductStockIdTen" resultType="com.example.fullness.stationary.entity.ProductStock">
         <![CDATA[
             SELECT
                   id         AS id
