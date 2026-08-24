@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import lombok.Data;
 
+/**
+ * 商品(product)テーブル用Formクラス
+ * 
+ */
 @Data
 public class ProductForm implements Serializable {
     /** 商品ID */
