@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.fullness.stationary.repository.ProductStockRepository">
+
+    <!-- resultMapつくる？ -->
+
+
+    <!-- 修正して「完了」ボタンを押したとき：在庫データを上書き更新する -->
+    <update id="updateStock">
+        <![CDATA[ 
+        UPDATE product_stock 
+        SET quantity = #{quantity}
+        WHERE product_id = #{productId}
+        ]]> 
+    </update>

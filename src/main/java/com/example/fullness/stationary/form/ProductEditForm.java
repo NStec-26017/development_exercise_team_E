@@ -35,15 +35,15 @@ public class ProductEditForm implements Serializable {
     @NotNull(message = "在庫数を入力してください")
     @Min(value = 0, message = "正しい在庫数形式で入力してください")
     @Max(value = 1000, message = "在庫数は1000個以下で入力してください")
-    private Integer quantity; // Entityの「quantity」に合わせました
+    private Integer stock;
 
     // 4. カテゴリID
     @NotBlank(message = "カテゴリを選択してください")
-    private Integer productCategoryId; // Entityの「productCategoryId」に合わせました
+    private Integer categoryId;
 
-    // 5. 画像ファイル（画面からアップロードされたファイルそのものを受け取る）
-    private MultipartFile imageFile;
+    // // 5. 画像ファイル（画面からアップロードされたファイルそのものを受け取る）わからない
+    // private MultipartFile imageFile;
 
     // 6. 現在登録されている画像のパス・URL（確認画面での表示や、画像が変更されない場合に使用）
-    private String imageUrl;
+    private String image;
 }

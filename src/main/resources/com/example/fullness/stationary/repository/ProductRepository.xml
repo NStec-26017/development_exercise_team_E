@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
-  
-  <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる -->
+<!-- 
+  <!-- 情報を検索するSQL　productテーブル、product_stockテーブル -->
+ <resultMap ="productResultMap" type =com.example.fullness.stationary.entity.Product>
+        <id property="id" column="id">
+        <!-- 一般の列（propertyがJavaの変数名、columnがDBの列名） -->
+        <result property="productCategoryId" column="product_category_id" />
+        <result property="name" column="name" />
+        <result property="price" column="price" />
+        <result property="imageUrl" column="image_url" />
+        <result property="deleteFlag" column="delete_flag" />
+        <!-- テーブル結合で取得する、product_stockテーブルの在庫数（quantity） -->
+        <result property="quantity" column="quantity" />
+    </resultMap>
+
+
+  <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる
     <select id="selectById" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[ 
         SELECT 
@@ -11,14 +25,13 @@
             product_category_id AS productCategoryId,
             name,
             price,
-            image_url AS imageUrl,
-            delete_flag AS deleteFlag
+            image_url
+            delete_flag
         FROM product WHERE id = #{id}
         AND delete_flag = 0
         ]]> 
     </select>
 
-<!-- ↑   image_url AS imageUrlこういうことすべき？？delete_flagってなに？-->
 
     <!-- 修正して「完了」ボタンを押したとき：商品データを上書き更新する -->
     <update id="updateProduct">
@@ -30,15 +43,6 @@
             image_url = #{imageUrl} 
         WHERE id = #{id}
         AND delete_flag = 0
-        ]]> 
-    </update>
-
-    <!-- 修正して「完了」ボタンを押したとき：在庫データを上書き更新する -->
-    <update id="updateStock">
-        <![CDATA[ 
-        UPDATE product_stock 
-        SET quantity = #{quantity}
-        WHERE product_id = #{productId}
         ]]> 
     </update>
 
