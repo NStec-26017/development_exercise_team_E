@@ -51,7 +51,7 @@
 
     <!-- uc010 商品を 1 件登録する。-->
     <insert id="insertProductTen"
-            resultType="com.example.fullness.stationary.entity.Product"
+            parameterType="com.example.fullness.stationary.entity.Product"
             useGeneratedKeys="true"
             keyProperty="id"
             keyColumn="id">

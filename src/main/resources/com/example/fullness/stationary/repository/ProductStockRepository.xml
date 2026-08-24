@@ -5,7 +5,7 @@
  
  <!-- uc010 商品在庫を 1 件登録する。 -->
     <insert id="insertProductStockTen"
-            resultType="com.example.fullness.stationary.entity.ProductStock"
+        parameterType="com.example.fullness.stationary.entity.ProductStock"
             useGeneratedKeys="true"
             keyProperty="id"
             keyColumn="id">

@@ -1,7 +1,12 @@
 package com.example.fullness.stationary.repository;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
 import com.example.fullness.stationary.entity.ProductStock;
 
+@Mapper
+@Repository
 public interface ProductStockRepository {
 
     /**

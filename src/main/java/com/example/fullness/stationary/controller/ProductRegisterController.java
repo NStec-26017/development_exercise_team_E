@@ -1,5 +1,8 @@
 package com.example.fullness.stationary.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,10 +43,9 @@ public class ProductRegisterController {
      * 
      * @return
      */
-    @GetMapping
+    @GetMapping("/add")
     public String form(Model model) {
-        model.addAttribute("categoryList",
-                productRegisterService.selectAllCategoryTen());
+        addFormViewAttributes(model);
         return "admin/product/add_form";
     }
 
@@ -53,9 +55,7 @@ public class ProductRegisterController {
             @Validated @ModelAttribute("productStockForm") ProductStockForm productStockForm,
             BindingResult bindingResult2, Model model) {
         if (bindingResult.hasErrors() || bindingResult2.hasErrors()) {
-            model.addAttribute("categoryList",
-                    productRegisterService.selectAllCategoryTen());
-
+            addFormViewAttributes(model);
             return "admin/product/add_form";
         }
         return "admin/product/add_confirm";
@@ -74,6 +74,22 @@ public class ProductRegisterController {
     @PostMapping("/back")
     public String back() {
         return "redirect:/admin/product/add_form";
+    }
+
+    private void addFormViewAttributes(Model model) {
+        Object categoryList = productRegisterService.selectAllCategoryTen();
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("categories", categoryList);
+
+        ProductForm productForm = (ProductForm) model.getAttribute("productForm");
+        ProductStockForm productStockForm = (ProductStockForm) model.getAttribute("productStockForm");
+        Map<String, Object> form = new HashMap<>();
+        form.put("name", productForm.getName());
+        form.put("price", productForm.getPrice());
+        form.put("stock", productStockForm.getQuantity());
+        form.put("categoryId", productForm.getProductCategoryId());
+        form.put("imagePath", productForm.getImagePath());
+        model.addAttribute("form", form);
     }
 
     @PostMapping("/complete")
