@@ -1,5 +1,5 @@
 package com.example.fullness.stationary.repository;
 
-public interface ProductStockRepository {
+public interface ProductCategoryRepository {
 
 }
