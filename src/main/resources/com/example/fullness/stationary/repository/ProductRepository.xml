@@ -3,20 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
   <!-- 情報を検索するSQL　productテーブル、product_stockテーブル -->
- <resultMap ="productResultMap" type =com.example.fullness.stationary.entity.Product>
-        <id property="id" column="id">
-        <!-- 一般の列（propertyがJavaの変数名、columnがDBの列名） -->
-        <result property="productCategoryId" column="product_category_id" />
-        <result property="name" column="name" />
-        <result property="price" column="price" />
-        <result property="imageUrl" column="image_url" />
-        <result property="deleteFlag" column="delete_flag" />
-        <!-- テーブル結合で取得する、product_stockテーブルの在庫数（quantity） -->
-        <result property="quantity" column="quantity" />
-    </resultMap>
-
-
-  <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる
+     <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる -->
     <select id="selectById" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[ 
         SELECT 
@@ -24,41 +11,16 @@
             product_category_id AS productCategoryId,
             name,
             price,
-            image_url
-            delete_flag
-        FROM product WHERE id = #{id}
-        AND delete_flag = 0
-        ]]> 
-    </select>
-
-
-    <!-- 修正して「完了」ボタンを押したとき：商品データを上書き更新する -->
-    <update id="updateProduct">
-        <![CDATA[ 
-        UPDATE product 
-        SET product_category_id = #{productCategoryId},
-            name = #{name},
-            price = #{price},
-            image_url = #{imageUrl} 
+            image_url AS imageUrl,
+            delete_flag AS deleteFlag
+        FROM product 
         WHERE id = #{id}
         AND delete_flag = 0
         ]]> 
-    </update>
-
-
-    <!-- 確認画面へ進むとき：選択されたカテゴリIDが本当にマスタに存在するかチェックする -->
-    <select id="exsistsCategory" resultType="boolean">
-        <![CDATA[ 
-        SELECT COUNT(*) > 0 
-        FROM product_category 
-        WHERE id = #{categoryId}
-        ]]> 
     </select>
-    <!-- ↑SELECT COUNT(*) > 0 の部分理解してない -->
 
     <!-- カテゴリをプルダウンに表示するために、すべてのカテゴリーマスタを取得する -->
-        
-       <select id ="selectAllCategories" resultType="com.example.fullness.stationary.entity.ProductCategory">
+    <select id="selectAllCategories" resultType="com.example.fullness.stationary.entity.ProductCategory">
         <![CDATA[ 
         SELECT 
             id,
@@ -66,4 +28,5 @@
         FROM product_category
         ]]> 
     </select>
+
 </mapper>

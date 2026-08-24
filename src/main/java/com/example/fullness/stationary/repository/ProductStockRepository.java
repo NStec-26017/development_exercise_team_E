@@ -1,10 +1,12 @@
 package com.example.fullness.stationary.repository;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.example.fullness.stationary.entity.ProductStock;
 
-public class ProductStockRepository {
+@Mapper
+public interface ProductStockRepository {
 
-    // 修正して「完了」ボタンを押したとき：在庫データを上書き更新する
-    // void editStock(ProductStock productStock);
-
+    // product_stock テーブル
+    ProductStock selectByProductId(Integer productId);
 }

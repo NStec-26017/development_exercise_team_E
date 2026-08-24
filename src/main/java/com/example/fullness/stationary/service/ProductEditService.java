@@ -10,7 +10,6 @@ import com.example.fullness.stationary.entity.ProductStock;
 import com.example.fullness.stationary.form.ProductEditForm;
 import com.example.fullness.stationary.repository.ProductRepository;
 import com.example.fullness.stationary.repository.ProductStockRepository;
-import com.example.fullness.stationary.helper.ImageEditHelper;
 
 /*
  * UC012 「商品修正」のServiceクラス
@@ -19,36 +18,29 @@ import com.example.fullness.stationary.helper.ImageEditHelper;
 
 @Service
 public class ProductEditService {
-
     @Autowired
     private ProductRepository productRepository;
 
     @Autowired
     private ProductStockRepository productStockRepository;
 
-    // @Autowired
-    // private ImageEditHelper imageEditHelper;
+    public ProductEditForm getEditForm(Integer productId) {
+        // 1. product テーブルから取得
+        Product product = productRepository.selectById(productId);
 
-    public Product findById(Integer productId) {
-        return productRepository.selectById(productId);
+        // 2. product_stock テーブルから取得
+        ProductStock stock = productStockRepository.selectByProductId(productId);
+
+        // 3. Form に詰める
+        ProductEditForm form = new ProductEditForm();
+        form.setId(product.getId());
+        form.setName(product.getName());
+        form.setPrice(product.getPrice());
+        form.setStock(stock.getQuantity()); // ← ここ！
+        form.setCategoryId(product.getProductCategoryId());
+        form.setImagePath(product.getImageUrl());
+        // form.setDeleteFlag(product.getDeleteFlag());
+
+        return form;
     }
-
-    // // 商品データを上書き保存するためにSQLを実行する処理 理解してるようでしてない
-    // Product product = new Product();
-    // product.setId(form.getId());
-    // product.setName(form.getName());
-    // product.setPrice(form.getPrice());
-    // product.setProductCategoryId(form.getProductCategoryId());
-    // product.setImageUrl(finalImageUrl);
-    // product.setDeleteFlag(0);
-
-    // productRepository.editProduct(product);
-
-    // // 在庫データを上書き保存するためにSQLを実行する処理。
-    // ProductStock stock = new ProductStock();
-    // stock.setProductId(form.getId());
-    // stock.setQuantity(form.getQuantity());
-
-    // productRepository.editStock(stock);
-
 }

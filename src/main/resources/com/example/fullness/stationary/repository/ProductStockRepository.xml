@@ -3,14 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fullness.stationary.repository.ProductStockRepository">
 
-    <!-- resultMapつくる？ -->
-
-
-    <!-- 修正して「完了」ボタンを押したとき：在庫データを上書き更新する -->
-    <update id="updateStock">
+    <!-- product_stock テーブルから商品IDで在庫データを取得する -->
+    <select id="selectByProductId" resultType="com.example.fullness.stationary.entity.ProductStock">
         <![CDATA[ 
-        UPDATE product_stock 
-        SET quantity = #{quantity}
+        SELECT 
+            id,
+            product_id AS productId,
+            quantity
+        FROM product_stock 
         WHERE product_id = #{productId}
         ]]> 
-    </update>
+    </select>
+
+</mapper>

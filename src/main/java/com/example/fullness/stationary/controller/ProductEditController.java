@@ -45,18 +45,8 @@ public class ProductEditController {
 
     @GetMapping("/{productId}")
     public String editForm(@PathVariable Integer productId, Model model) {
-
-        // ①DBを検索してデータを取得 Service→Mapper
-        Product product = productEditService.findById(productId);
-
-        // ②Viewに表示するデータを渡す Formの形にする
-        ProductEditForm form = new ProductEditForm();
-        form.setId(product.getId());
-        form.setName(product.getName());
-        form.setPrice(product.getPrice());
-        // form.setStock(product.getStock());
-        form.setCategoryId(product.getProductCategoryId());
-        // form.setDeleteFlag(product.getDeleteFlag());
+        // Service から Form をもらう
+        ProductEditForm form = productEditService.getEditForm(productId);
 
         List<ProductCategory> categories = productCategoryService.findAll();
 
@@ -65,6 +55,30 @@ public class ProductEditController {
 
         return "admin/product/edit_form";
     }
+
+    /* 前まで書いてたやりかた↓入力画面 */
+    // @GetMapping("/{productId}")
+    // public String editForm(@PathVariable Integer productId, Model model) {
+    // Service から Form をもらう
+    // // ①DBを検索してデータを取得 Service→Mapper
+    // Product product = productEditService.findById(productId);
+
+    // // ②Viewに表示するデータを渡す Formの形にする
+    // ProductEditForm form = new ProductEditForm();
+    // form.setId(product.getId());
+    // form.setName(product.getName());
+    // form.setPrice(product.getPrice());
+    // form.setStock(product.getStock());
+    // form.setCategoryId(product.getProductCategoryId());
+    // form.setDeleteFlag(product.getDeleteFlag());
+
+    // List<ProductCategory> categories = productCategoryService.findAll();
+
+    // model.addAttribute("ProductEditForm", form);
+    // model.addAttribute("categories", categories);
+
+    // return "admin/product/edit_form";
+    // }
 
     // @PostMapping("/confirm")
     // public String
