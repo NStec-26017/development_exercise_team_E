@@ -43,4 +43,5 @@ public class ProductEditForm implements Serializable {
     private String imagePath;
 
     // 6.DeleteFlag追加
+    private Integer deleteFlag;
 }

@@ -33,7 +33,7 @@ public class ProductEditServiceImpl implements ProductEditService {
         form.setStock(stock.getQuantity());
         form.setCategoryId(product.getProductCategoryId());
         form.setImagePath(product.getImageUrl());
-        // form.setDeleteFlag(product.getDeleteFlag());
+        form.setDeleteFlag(product.getDeleteFlag());
 
         return form;
     }
