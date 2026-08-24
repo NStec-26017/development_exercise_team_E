@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * 商品カテゴリ(product_entity)テーブル用entityクラス
- *
+ * 
  */
 @Data
 public class ProductCategory implements Serializable {
@@ -16,4 +16,5 @@ public class ProductCategory implements Serializable {
 
     /** 商品カテゴリ名 */
     private String name;
+
 }

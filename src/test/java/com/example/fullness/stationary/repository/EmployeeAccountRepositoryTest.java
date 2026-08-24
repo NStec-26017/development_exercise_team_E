@@ -1,5 +1,6 @@
 package com.example.fullness.stationary.repository;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -18,6 +19,29 @@ public class EmployeeAccountRepositoryTest {
 
     @Autowired
     private EmployeeAccountRepository employeeAccountRepository;
+
+    // 存在するアカウント名で検索するとtrueが返る
+    @Test
+    public void existsByNameTest_OK() {
+        String expectedName = "fullness";
+
+        Boolean actual = employeeAccountRepository.existsByName(expectedName);
+
+        Assertions.assertTrue(actual);
+    }
+
+    @Test
+    public void createTest_OK() {
+        EmployeeAccount employeeAccount = new EmployeeAccount();
+
+        employeeAccount.setEmployeeId(104);
+        employeeAccount.setName("mamezou");
+        employeeAccount.setPassword("mamezou");
+
+        Boolean actual = employeeAccountRepository.create(employeeAccount);
+
+        assertTrue(actual);
+    }
 
     @Test
     public void selectAllTest() {
