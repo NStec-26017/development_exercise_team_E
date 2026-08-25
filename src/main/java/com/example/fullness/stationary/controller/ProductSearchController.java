@@ -17,7 +17,7 @@ import com.example.fullness.stationary.service.ProductSearchService;
 
 /**
  * UC011「商品検索」の画面を遷移を担当するController
- * 
+ *
  */
 @Controller
 @RequestMapping("/admin/product")
@@ -70,17 +70,5 @@ public class ProductSearchController {
         return "admin/product/search";
 
     }
-
-    // /** BP006「商品検索画面」から BP007「商品削除（確認）画面」に遷移 */
-    // @GetMapping("/delete/{productId}")
-    // public String productDelete(@PathVariable Integer productId, Model model) {
-    // return "admin/product/delete_confirm";
-    // }
-
-    // /** BP006「商品検索画面」から BP009「商品修正（入力）画面」に遷移 */
-    // @GetMapping("/edit/{productId}")
-    // public String productEdit(@PathVariable Integer productId, Model model) {
-    // return "admin/product/edit_form";
-    // }
 
 }

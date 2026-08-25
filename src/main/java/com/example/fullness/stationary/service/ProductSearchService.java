@@ -22,5 +22,4 @@ public interface ProductSearchService {
     int countProducts();
 
     int countProductsByCategoryId(Integer categoryId);
-
 }

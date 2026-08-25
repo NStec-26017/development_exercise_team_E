@@ -8,18 +8,21 @@ import org.springframework.stereotype.Repository;
 
 import com.example.fullness.stationary.entity.Product;
 
+/**
+ * 商品テーブル({@link Product})に対するデータアクセスを提供するRepository。
+ */
 @Mapper
 @Repository
 public interface ProductRepository {
-    List<Product> selectAll(
-            @Param("offset") int offset);
+        List<Product> selectAll(
+                        @Param("offset") int offset);
 
-    List<Product> findByCategoryId(
-            @Param("categoryId") Integer categoryId,
-            @Param("offset") int offset);
+        List<Product> findByCategoryId(
+                        @Param("categoryId") Integer categoryId,
+                        @Param("offset") int offset);
 
-    int countAll();
+        int countAll();
 
-    int countByCategoryId(
-            @Param("categoryId") Integer categoryId);
+        int countByCategoryId(
+                        @Param("categoryId") Integer categoryId);
 }
