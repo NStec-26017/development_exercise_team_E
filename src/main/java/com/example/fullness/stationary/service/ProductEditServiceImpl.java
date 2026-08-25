@@ -23,7 +23,7 @@ public class ProductEditServiceImpl implements ProductEditService {
     @Autowired
     private ProductCategoryRepository productCategoryRepository;
 
-    /* BP009商品修正（入力）画面へ遷移 */
+    /* productテーブル、product_stock テーブルから情報を取得し、両方のデータをFormにまとめて返す */
     @Override
     public ProductEditForm getEditForm(Integer productId) {
         // 1. productテーブルから取得
@@ -47,7 +47,7 @@ public class ProductEditServiceImpl implements ProductEditService {
         return form;
     }
 
-    /* BP009商品修正（入力）画面から情報更新 */
+    /* productテーブル、product_stock テーブルの情報をDBに更新する */
     @Override
     public void updateProduct(Integer productId, ProductEditForm form) {
         // 1. Productエンティティに詰める
@@ -71,19 +71,9 @@ public class ProductEditServiceImpl implements ProductEditService {
         productStockRepository.updateStock(stock);
     }
 
-    /* BP010商品修正（確認）画面で商品名を表示する */
+    // カテゴリ一件取得
     @Override
-    public String getProductName(Integer productId) {
-        // 1. productテーブルから取得
-        Product product = productRepository.selectById(productId);
-
-        // 2. 商品名を返す
-        return product.getName();
-    }
-
-    // カテゴリ1件取得
-    @Override
-    public ProductCategory findById(Integer categoryId) {
-        return productCategoryRepository.selectCategoryById(categoryId);
+    public ProductCategory findCategoryById(Integer categoryId) {
+        return productCategoryRepository.selectByCategoryId(categoryId);
     }
 }

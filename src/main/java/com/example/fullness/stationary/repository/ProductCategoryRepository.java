@@ -20,9 +20,9 @@ import com.example.fullness.stationary.entity.ProductCategory;
 @Mapper
 @Repository
 public interface ProductCategoryRepository {
-    // IDでカテゴリを1件だけ特定して持ってくる（確認画面でカテゴリ名を表示するとき）
-    ProductCategory selectCategoryById(@Param("categoryId") Integer categoryId);
-
     // カテゴリ全件取得
     List<ProductCategory> selectAll();
+
+    // カテゴリ一件取得（確認画面でカテゴリ名表示するのに利用）
+    ProductCategory selectByCategoryId(@Param("categoryId") Integer categoryId);
 }

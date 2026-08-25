@@ -19,7 +19,7 @@ public class ProductCategoryRepositoryTest {
     private ProductCategoryRepository productCategoryRepository;
 
     @Test
-    public void selectAllTestOK() {
+    public void selectAllTest_OK() {
         List<ProductCategory> actual = productCategoryRepository.selectAll();
         assertNotNull(actual);
         assertEquals(3, actual.size());
@@ -33,6 +33,21 @@ public class ProductCategoryRepositoryTest {
         assertEquals(10003, actual.get(2).getId());
         assertEquals("パソコン周辺機器", actual.get(2).getName());
 
+    }
+
+    // カテゴリ情報一件取得
+    @Test
+    public void selectByCategoryIdTest_OK() {
+        // 存在するカテゴリID
+        Integer categoryId = 10001;
+
+        // SQL実行
+        ProductCategory actual = productCategoryRepository.selectByCategoryId(categoryId);
+
+        // データが正しく取れているか確認
+        assertNotNull(actual);
+        assertEquals(10001, actual.getId());
+        assertEquals("文具", actual.getName());
     }
 
 }

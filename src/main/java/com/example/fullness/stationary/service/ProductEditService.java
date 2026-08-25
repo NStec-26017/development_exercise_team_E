@@ -13,26 +13,19 @@ import com.example.fullness.stationary.form.ProductEditForm;
 public interface ProductEditService {
 
     /*
-     * 修正入力画面のFormデータを取得
+     * 修正入力画面に表示するデータを取得Formに詰め替える
      * productテーブル、product_stock テーブルから情報を取得し、両方のデータをFormにまとめて返す
      */
 
     ProductEditForm getEditForm(Integer productId);
-
-    // カテゴリの1件取得
-    ProductCategory findById(Integer categoryId);
-
     /*
-     * 商品情報をDBに更新
-     * productテーブル、product_stock テーブルの情報を更新
+     * 商品情報と在庫数をDBに更新する
+     * productテーブル、product_stock テーブルの情報を更新する
      */
 
     void updateProduct(Integer productId, ProductEditForm form);
 
-    /*
-     * 商品名を取得
-     * 商品IDで検索して商品名を取得
-     */
-    String getProductName(Integer productId);
+    // カテゴリの一件取得
+    ProductCategory findCategoryById(Integer categoryId);
 
 }

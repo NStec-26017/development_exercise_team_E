@@ -43,7 +43,7 @@ public class ProductEditController {
     public String editForm(@PathVariable("productId") Integer productId, Model model) {
         // Service から Form をもらう
         ProductEditForm form = productEditService.getEditForm(productId);
-
+        // カテゴリ一覧を取得して渡す（プルダウンに表示するため）
         List<ProductCategory> categories = productSearchService.getProductCategories();
 
         model.addAttribute("form", form);
@@ -66,7 +66,7 @@ public class ProductEditController {
                             if (error.toString().contains("price"))
                                 return "正しい価格形式で入力してください";
                             if (error.toString().contains("stock"))
-                                return "正しい数量形式で入力してください";
+                                return "正しい在庫数形式で入力してください";
                         }
                         // Formに書いたメッセージを返す
                         return error.getDefaultMessage();
@@ -96,7 +96,7 @@ public class ProductEditController {
             Model model) {
 
         // カテゴリ情報を取得（確認画面でカテゴリ名を表示するため）
-        ProductCategory category = productEditService.findById(form.getCategoryId());
+        ProductCategory category = productEditService.findCategoryById(form.getCategoryId());
 
         // カテゴリ一覧を取得
         List<ProductCategory> categories = productSearchService.getProductCategories();

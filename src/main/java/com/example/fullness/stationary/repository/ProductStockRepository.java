@@ -8,7 +8,7 @@ import com.example.fullness.stationary.entity.ProductStock;
 @Mapper
 public interface ProductStockRepository {
 
-    // product_stock テーブル
+    // 在庫情報を一件取得
     ProductStock selectByProductId(@Param("productId") Integer productId);
 
     // 在庫情報を更新（修正完了時にDBに保存）

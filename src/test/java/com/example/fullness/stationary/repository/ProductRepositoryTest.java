@@ -86,4 +86,27 @@ public class ProductRepositoryTest {
         assertEquals("/images/color_pen12.jpeg", actual.get(9).getImagePath());
 
     }
+
+    // 商品情報一件取得（指定したIDをデータベースからピンポイントで一件引っ張ってこれるか）
+    @Test
+    public void selectByIdTest_OK() {
+        // 存在する商品ID
+        Integer id = 11;
+
+        // SQL実行
+        Product actual = productRepository.selectById(id);
+
+        // データが登録データと一致するか確認
+        assertNotNull(actual);
+        assertEquals(11, actual.getId());
+        assertEquals(10001, actual.getProductCategoryId());
+        assertEquals("黒鉛筆", actual.getName());
+        assertEquals(150, actual.getPrice());
+        assertEquals("black_pen.jpg", actual.getImagePath());
+        assertEquals(0, actual.getDeleteFlag());
+
+    }
+
+    // 商品情報更新
+
 }

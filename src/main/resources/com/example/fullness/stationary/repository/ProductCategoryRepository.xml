@@ -11,7 +11,7 @@
     </select>
 
     <!-- カテゴリを表示するため、カテゴリIDから1件取得 -->
-    <select id="selectCategoryById" resultType="com.example.fullness.stationary.entity.ProductCategory">
+    <select id="selectByCategoryId" resultType="com.example.fullness.stationary.entity.ProductCategory">
         <![CDATA[
         SELECT
             id,
