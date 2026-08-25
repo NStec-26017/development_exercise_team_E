@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
+
   <!-- 情報を検索するSQL　productテーブル、product_stockテーブル -->
+
      <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる -->
     <select id="selectById" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[ 

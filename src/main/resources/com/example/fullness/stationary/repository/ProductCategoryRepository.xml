@@ -3,16 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fullness.stationary.repository.ProductCategoryRepository">
 
-    <!-- カテゴリをプルダウンに表示するために、すべてのカテゴリーマスタを取得する -->
-    <select id="selectAllCategories" resultType="com.example.fullness.stationary.entity.ProductCategory">
-        <![CDATA[ 
-        SELECT 
-            id,
-            name
-        FROM product_category
-        ]]> 
+ <!-- カテゴリをプルダウンに表示するために、すべてのカテゴリーマスタを取得する -->
+    <select id="selectAll" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[
+            SELECT * FROM product_category
+        ]]>
     </select>
-
 
     <!-- カテゴリを表示するため、カテゴリIDから1件取得 -->
     <select id="selectCategoryById" resultType="com.example.fullness.stationary.entity.ProductCategory">
@@ -25,12 +21,4 @@
         ]]>
     </select>
     
-<!-- 以下リーダー -->
-
-    <select id="selectAll" resultType="com.example.fullness.stationary.entity.ProductCategory">
-        <![CDATA[
-            SELECT * FROM product_category
-        ]]>
-    </select>
-
 </mapper>

@@ -2,6 +2,7 @@ package com.example.fullness.stationary.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.fullness.stationary.entity.ProductCategory;
 import com.example.fullness.stationary.form.ProductEditForm;
 
 /*
@@ -17,6 +18,9 @@ public interface ProductEditService {
      */
 
     ProductEditForm getEditForm(Integer productId);
+
+    // カテゴリの1件取得
+    ProductCategory findById(Integer categoryId);
 
     /*
      * 商品情報をDBに更新

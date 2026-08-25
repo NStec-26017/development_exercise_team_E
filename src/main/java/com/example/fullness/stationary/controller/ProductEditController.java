@@ -19,8 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.fullness.stationary.entity.ProductCategory;
 import com.example.fullness.stationary.form.ProductEditForm;
-import com.example.fullness.stationary.service.ProductCategoryService;
 import com.example.fullness.stationary.service.ProductEditService;
+import com.example.fullness.stationary.service.ProductSearchService;
 
 /*
  * UC012「商品修正」Controller
@@ -32,10 +32,10 @@ import com.example.fullness.stationary.service.ProductEditService;
 public class ProductEditController {
 
     @Autowired
-    private ProductCategoryService productCategoryService;
+    private ProductEditService productEditService;
 
     @Autowired
-    private ProductEditService productEditService;
+    private ProductSearchService productSearchService;
 
     /* 1．BP009 商品修正（入力）画面の表示 */
 
@@ -44,37 +44,13 @@ public class ProductEditController {
         // Service から Form をもらう
         ProductEditForm form = productEditService.getEditForm(productId);
 
-        List<ProductCategory> categories = productCategoryService.findAll();
+        List<ProductCategory> categories = productSearchService.getProductCategories();
 
         model.addAttribute("form", form);
         model.addAttribute("categories", categories);
 
         return "admin/product/edit_form";
     }
-
-    /* 前まで書いてたやりかた↓入力画面 */
-    // @GetMapping("/{productId}")
-    // public String editForm(@PathVariable Integer productId, Model model) {
-    // Service から Form をもらう
-    // // ①DBを検索してデータを取得 Service→Mapper
-    // Product product = productEditService.findById(productId);
-
-    // // ②Viewに表示するデータを渡す Formの形にする
-    // ProductEditForm form = new ProductEditForm();
-    // form.setId(product.getId());
-    // form.setName(product.getName());
-    // form.setPrice(product.getPrice());
-    // form.setStock(product.getStock());
-    // form.setCategoryId(product.getProductCategoryId());
-    // form.setDeleteFlag(product.getDeleteFlag());
-
-    // List<ProductCategory> categories = productCategoryService.findAll();
-
-    // model.addAttribute("ProductEditForm", form);
-    // model.addAttribute("categories", categories);
-
-    // return "admin/product/edit_form";
-    // }
 
     /* 2．画面から修正された情報を受け取って、BP010 修正（確認）画面へリダイレクト */
     @PostMapping("/{productId}")
@@ -104,7 +80,7 @@ public class ProductEditController {
             model.addAttribute("form", form);
 
             // カテゴリ一覧を渡す
-            List<ProductCategory> categories = productCategoryService.findAll();
+            List<ProductCategory> categories = productSearchService.getProductCategories();
             model.addAttribute("categories", categories);
             // 入力画面に戻す
             return "admin/product/edit_form";
@@ -120,10 +96,10 @@ public class ProductEditController {
             Model model) {
 
         // カテゴリ情報を取得（確認画面でカテゴリ名を表示するため）
-        ProductCategory category = productCategoryService.findById(form.getCategoryId());
-        // カテゴリ一覧を取得
+        ProductCategory category = productEditService.findById(form.getCategoryId());
 
-        List<ProductCategory> categories = productCategoryService.findAll();
+        // カテゴリ一覧を取得
+        List<ProductCategory> categories = productSearchService.getProductCategories();
 
         // Form内にカテゴリ名を設定
         form.setCategoryName(category.getName());

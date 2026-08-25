@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.fullness.stationary.entity.Product;
+import com.example.fullness.stationary.entity.ProductCategory;
 import com.example.fullness.stationary.entity.ProductStock;
 import com.example.fullness.stationary.form.ProductEditForm;
+import com.example.fullness.stationary.repository.ProductCategoryRepository;
 import com.example.fullness.stationary.repository.ProductRepository;
 import com.example.fullness.stationary.repository.ProductStockRepository;
 
@@ -17,6 +19,9 @@ public class ProductEditServiceImpl implements ProductEditService {
 
     @Autowired
     private ProductStockRepository productStockRepository;
+
+    @Autowired
+    private ProductCategoryRepository productCategoryRepository;
 
     /* BP009商品修正（入力）画面へ遷移 */
     @Override
@@ -74,5 +79,11 @@ public class ProductEditServiceImpl implements ProductEditService {
 
         // 2. 商品名を返す
         return product.getName();
+    }
+
+    // カテゴリ1件取得
+    @Override
+    public ProductCategory findById(Integer categoryId) {
+        return productCategoryRepository.selectCategoryById(categoryId);
     }
 }

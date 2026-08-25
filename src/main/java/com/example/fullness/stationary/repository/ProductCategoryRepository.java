@@ -20,12 +20,9 @@ import com.example.fullness.stationary.entity.ProductCategory;
 @Mapper
 @Repository
 public interface ProductCategoryRepository {
-    // カテゴリをプルダウンに表示するために、すべてのカテゴリーマスタを取得する
-    List<ProductCategory> selectAllCategories();
-
     // IDでカテゴリを1件だけ特定して持ってくる（確認画面でカテゴリ名を表示するとき）
     ProductCategory selectCategoryById(@Param("categoryId") Integer categoryId);
 
-    // 検索画面
+    // カテゴリ全件取得
     List<ProductCategory> selectAll();
 }

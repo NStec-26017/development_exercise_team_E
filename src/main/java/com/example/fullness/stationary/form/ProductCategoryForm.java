@@ -6,7 +6,6 @@ import lombok.Data;
 
 /**
  * 商品カテゴリ(product_category)テーブル用Formクラス
- * 
  */
 @Data
 public class ProductCategoryForm implements Serializable {
