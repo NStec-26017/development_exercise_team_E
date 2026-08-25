@@ -24,10 +24,10 @@ public class ProductEditServiceImpl implements ProductEditService {
         // 1. productテーブルから取得
         Product product = productRepository.selectById(productId);
 
-        // DBエラーや情報取得できなかったときのエラーを書き込む？（私の想像）
-
         // 2. product_stockテーブルから取得
         ProductStock stock = productStockRepository.selectByProductId(productId);
+
+        // DBエラーや情報取得できなかったときのエラーを書き込む？
 
         // 3. Form に詰める
         ProductEditForm form = new ProductEditForm();
@@ -36,7 +36,7 @@ public class ProductEditServiceImpl implements ProductEditService {
         form.setPrice(product.getPrice());
         form.setStock(stock.getQuantity());
         form.setCategoryId(product.getProductCategoryId());
-        form.setImagePath(product.getImageUrl());
+        form.setImagePath(product.getImagePath());
         form.setDeleteFlag(product.getDeleteFlag());
 
         return form;
@@ -45,16 +45,16 @@ public class ProductEditServiceImpl implements ProductEditService {
     /* BP009商品修正（入力）画面から情報更新 */
     @Override
     public void updateProduct(Integer productId, ProductEditForm form) {
-        // 1. Productにエンティティに詰める
+        // 1. Productエンティティに詰める
         Product product = new Product();
         product.setId(productId);
         product.setName(form.getName());
         product.setPrice(form.getPrice());
         product.setProductCategoryId(form.getCategoryId());
-        product.setImageUrl(form.getImagePath());
+        product.setImagePath(form.getImagePath());
         product.setDeleteFlag(form.getDeleteFlag());
 
-        // 2. product テーブルを更新
+        // 2. productテーブルを更新
         productRepository.updateProduct(product);
 
         // 3. ProductStockエンティティに詰める
@@ -66,7 +66,7 @@ public class ProductEditServiceImpl implements ProductEditService {
         productStockRepository.updateStock(stock);
     }
 
-    /* BP010商品修正（確認）画面で商品名を */
+    /* BP010商品修正（確認）画面で商品名を表示する */
     @Override
     public String getProductName(Integer productId) {
         // 1. productテーブルから取得

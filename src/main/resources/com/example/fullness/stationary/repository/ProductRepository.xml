@@ -11,7 +11,7 @@
             product_category_id AS productCategoryId,
             name,
             price,
-            image_url AS imageUrl,
+            image_url AS imagePath,
             delete_flag AS deleteFlag
         FROM product 
         WHERE id = #{id}
@@ -27,7 +27,7 @@
         SET product_category_id = #{productCategoryId},
             name = #{name},
             price = #{price},
-            image_url = #{imageUrl},
+            image_url = #{imagePath},
             delete_flag = #{deleteFlag}
         WHERE id = #{id}
         AND delete_flag = 0

@@ -39,7 +39,7 @@ public class ProductEditForm implements Serializable {
     @NotNull(message = "カテゴリを選択してください")
     private Integer categoryId;
 
-    // 5. 現在登録されている画像のパス・URL（確認画面での表示や、画像が変更されない場合に使用）
+    // 5. 確認画面での表示や、画像が変更されない場合に使用する現在登録されている画像のパス・URL
     private String imagePath;
 
     // 6.DeleteFlag追加
