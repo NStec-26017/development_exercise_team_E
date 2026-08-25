@@ -1,15 +1,15 @@
-package com.example.fullness.stationary.entity;
+package com.example.fullness.stationary.form;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 /**
- * 商品(product)テーブル用entityクラス
+ * 商品(product)テーブル用Formクラス
  * 
  */
 @Data
-public class Product implements Serializable {
+public class ProductForm implements Serializable {
     /** 商品ID */
     private Integer id;
     /** 商品カテゴリID（外部キー） */
@@ -23,8 +23,4 @@ public class Product implements Serializable {
     /** 削除フラグ */
     private Integer deleteFlag;
 
-    // テンプレートで参照される imagePath に対応する互換ゲッター
-    public String getImagePath() {
-        return this.imagePath;
-    }
 }

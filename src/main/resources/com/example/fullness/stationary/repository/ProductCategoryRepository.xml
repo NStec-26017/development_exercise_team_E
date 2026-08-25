@@ -25,4 +25,12 @@
         ]]>
     </select>
     
+<!-- 以下リーダー -->
+
+    <select id="selectAll" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[
+            SELECT * FROM product_category
+        ]]>
+    </select>
+
 </mapper>

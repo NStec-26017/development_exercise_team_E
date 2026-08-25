@@ -1,15 +1,15 @@
-package com.example.fullness.stationary.entity;
+package com.example.fullness.stationary.form;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 /**
- * 商品カテゴリ(product_category)テーブル用entityクラス
+ * 商品カテゴリ(product_category)テーブル用Formクラス
  * 
  */
 @Data
-public class ProductCategory implements Serializable {
+public class ProductCategoryForm implements Serializable {
 
     /** 商品カテゴリID */
     private Integer id;

@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -26,7 +25,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 // アクセス制限の情報
                 authz -> authz
-                        .requestMatchers("/public/**", "/css/**", "/images/**", "/", "/admin", "/admin/login")
+                        .requestMatchers("/public/**", "/css/**", "/images/**", "/", "/admin", "/admin/login", "/error")
                         .permitAll()
                         .anyRequest().authenticated())
 
@@ -60,7 +59,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // TODO 後でBCryptPasswordEncoderに変更する
         return new BCryptPasswordEncoder();
     }
+
 }
