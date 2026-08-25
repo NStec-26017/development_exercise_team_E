@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,10 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
         try {
             return productRepository.selectAll(offset);
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new ProductSearchException("システムエラーが発生しました。管理者に連絡してください。", e);
+        } catch (BadSqlGrammarException e) {
+            throw new ProductSearchException("商品データの取得に失敗しました。", e);
         } catch (DataAccessException e) {
-            throw new ProductSearchException("商品情報の取得に失敗しました", e);
+            throw new ProductSearchException("システムエラーが発生しました。管理者に連絡してください。", e);
         }
 
     }
