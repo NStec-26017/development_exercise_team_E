@@ -15,11 +15,6 @@ public interface ProductCategoryRepository {
 
     List<ProductCategory> selectAll();
 
-    // カテゴリ名で商品カテゴリの情報を取得する
-    ProductCategory selectByName(String name);
-
-    // 指定されたカテゴリ名が既に登録されているか(重複しているか)を確認
-
     // @param name 商品カテゴリ名
     // @return 登録済みの場合はtrue
 
@@ -29,10 +24,6 @@ public interface ProductCategoryRepository {
     // @param name 登録するカテゴリ名
     // @return 登録に成功した場合はtrue
 
-    // ↓↓XMLに書いたからいらない↓↓
-    // @Insert("INSERT INTO categories (name) VALUES (#{name})")
-    // @Options(useGeneratedKeys = true, keyProperty = "id")
-    Boolean create(ProductCategory productcategory);
+    Boolean create(ProductCategory productCategory);
 
-    
-    }
+}

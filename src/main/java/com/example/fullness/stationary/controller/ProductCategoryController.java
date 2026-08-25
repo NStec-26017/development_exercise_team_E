@@ -144,7 +144,7 @@ public class ProductCategoryController {
 
         ProductCategory productCategory = new ProductCategory();
         productCategory.setName(form.getName());
-        productCategoryService.registerCategory(productCategory);
+        productCategoryService.create(productCategory);
 
         session.setAttribute("registeredCategoryName", form.getName());
         sessionStatus.setComplete();
