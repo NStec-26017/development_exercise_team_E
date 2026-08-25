@@ -13,15 +13,15 @@ public class ProductForm implements Serializable {
     /** 商品ID */
     private Integer id;
     /** 商品カテゴリID（外部キー） */
-    @NotNull
+    @NotNull(message = "カテゴリを選択してください")
     private Integer productCategoryId;
     /** 商品名 */
-    @NotBlank
-    @Size(min = 2, max = 20)
+    @NotBlank(message = "商品名を入力してください")
+    @Size(min = 2, max = 20, message = "商品名は2~20文字で入力してください")
     private String name;
     /** 価格 */
-    @NotNull
-    @Max(1000000)
+    @NotNull(message = "価格を入力してください")
+    @Max(value = 1000000, message = "価格は100万以下で入力してください")
     private Integer price;
     /** 画像URL */
     private String imagePath;

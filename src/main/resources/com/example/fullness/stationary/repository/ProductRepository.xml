@@ -59,7 +59,7 @@
             INSERT INTO product
                 (product_category_id, name, price, image_url, delete_flag)
             VALUES
-                (#{productCategoryId}, #{name}, #{price}, #{imageUrl}, #{deleteFlag})
+                (#{productCategoryId}, #{name}, #{price}, #{imagePath}, #{deleteFlag})
         ]]>
     </insert>
 
@@ -71,7 +71,7 @@
                 , product_category_id AS productCategoryId
                 , name                AS name
                 , price               AS price
-                , image_url           AS imageUrl
+                , image_path           AS imagePath
                 , delete_flag         AS deleteFlag
             FROM product
             WHERE id = #{id}

@@ -10,7 +10,7 @@ import lombok.Data;
 public class ProductStockForm implements Serializable {
     private Integer productId;
 
-    @NotNull
-    @Max(1000)
+    @NotNull(message = "在庫数を入力してください")
+    @Max(value = 1000, message = "在庫数は1000個以下で入力してください")
     private Integer quantity;
 }
