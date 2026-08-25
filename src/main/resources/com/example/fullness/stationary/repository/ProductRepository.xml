@@ -19,14 +19,19 @@
         ]]> 
     </select>
 
-    <!-- カテゴリをプルダウンに表示するために、すべてのカテゴリーマスタを取得する -->
-    <select id="selectAllCategories" resultType="com.example.fullness.stationary.entity.ProductCategory">
-        <![CDATA[ 
-        SELECT 
-            id,
-            name
-        FROM product_category
-        ]]> 
-    </select>
+
+    <!-- 商品情報を更新 -->
+    <update id="updateProduct">
+        <![CDATA[
+        UPDATE product
+        SET product_category_id = #{productCategoryId},
+            name = #{name},
+            price = #{price},
+            image_url = #{imageUrl},
+            delete_flag = #{deleteFlag}
+        WHERE id = #{id}
+        AND delete_flag = 0
+        ]]>
+    </update>
 
 </mapper>

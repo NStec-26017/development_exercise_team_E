@@ -44,4 +44,7 @@ public class ProductEditForm implements Serializable {
 
     // 6.DeleteFlag追加
     private Integer deleteFlag;
+
+    // 確認画面で表示するCategoryName
+    private String categoryName;
 }

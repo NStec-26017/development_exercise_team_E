@@ -15,4 +15,13 @@
         ]]> 
     </select>
 
+     <!-- 在庫情報を更新 -->
+    <update id="updateStock">
+        <![CDATA[
+        UPDATE product_stock
+        SET quantity = #{quantity}
+        WHERE product_id = #{productId}
+        ]]>
+    </update>
+    
 </mapper>

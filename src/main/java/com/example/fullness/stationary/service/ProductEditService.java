@@ -1,27 +1,34 @@
 package com.example.fullness.stationary.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.fullness.stationary.entity.Product;
-import com.example.fullness.stationary.entity.ProductStock;
 import com.example.fullness.stationary.form.ProductEditForm;
-import com.example.fullness.stationary.repository.ProductRepository;
-import com.example.fullness.stationary.repository.ProductStockRepository;
 
 /*
  * UC012 「商品修正」のServiceクラス
- * 作業中
  */
 
 @Service
 public interface ProductEditService {
-    /**
-     * 商品修正画面用のFormデータを取得
-     * 
-     * @param productId 商品ID
-     * @return ProductEditForm
+
+    /*
+     * 修正入力画面のFormデータを取得
+     * productテーブル、product_stock テーブルから情報を取得し、両方のデータをFormにまとめて返す
      */
 
     ProductEditForm getEditForm(Integer productId);
+
+    /*
+     * 商品情報をDBに更新
+     * productテーブル、product_stock テーブルの情報を更新
+     */
+
+    void updateProduct(Integer productId, ProductEditForm form);
+
+    /*
+     * 商品名を取得
+     * 商品IDで検索して商品名を取得
+     */
+    String getProductName(Integer productId);
+
 }
