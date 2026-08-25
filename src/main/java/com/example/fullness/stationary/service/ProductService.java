@@ -20,12 +20,13 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public ProductStock findStockByProductld(Integer productld) {
-        return productStockRepository.findById(productld);
+    public ProductStock findProductStockById(Integer productId) {
+        return productStockRepository.findById(productId);
     }
 
     // 論理削除（delete_flag = 1）
     public void logicalDelete(Integer id) {
         productRepository.updateDeleteFlag(id);
     }
+
 }

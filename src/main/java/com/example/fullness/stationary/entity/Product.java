@@ -1,6 +1,7 @@
 package com.example.fullness.stationary.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -28,4 +29,8 @@ public class Product implements Serializable {
     public String getImagePath() {
         return this.imagePath;
     }
+
+    private List<ProductStock> productStock;
+
+    private List<ProductCategory> productCategory;
 }

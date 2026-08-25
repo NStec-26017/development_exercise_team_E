@@ -12,16 +12,10 @@
     <select id="selectProductStockJoin" resultType="java.util.HashMap">
         <![CDATA[
         SELECT
-        p.id AS id,
-        p.product_category_id AS category_id,
-        p.name AS name,
         p.price AS price,
         p.image_url AS image_url,
         p.delete_flag AS delete_flag,
-        pc.id AS id,
         pc.name AS name,
-        ps.id AS id,
-        ps.product_id AS product_id,
         ps.quantity AS quantity
     FROM product p
     INNER JOIN product_category pc ON p.product_category_id = pc.id

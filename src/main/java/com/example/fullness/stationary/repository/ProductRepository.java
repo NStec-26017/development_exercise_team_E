@@ -18,14 +18,12 @@ public interface ProductRepository {
                         @Param("categoryId") Integer categoryId,
                         @Param("offset") int offset);
 
-        Product findById(@Param("id") Integer id);
-
         int countAll();
 
         int countByCategoryId(
                         @Param("categoryId") Integer categoryId);
 
-        int deleteById(int id);
+        Product findById(@Param("id") Integer id);
 
         void updateDeleteFlag(@Param("id") Integer id);
 }

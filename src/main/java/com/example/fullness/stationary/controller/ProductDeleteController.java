@@ -34,7 +34,7 @@ public class ProductDeleteController {
             return "redirect:/admin/product";
         }
 
-        ProductStock stock = productService.findStockByProductld(productId);
+        ProductStock stock = productService.findProductStockById(productId);
         if (stock == null) {
             stock = new ProductStock();
             stock.setQuantity(0);

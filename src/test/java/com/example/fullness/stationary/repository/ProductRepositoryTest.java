@@ -2,10 +2,12 @@ package com.example.fullness.stationary.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -92,7 +94,25 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void testUpdateDeleteFlag() {
+    void findByIdTest_Ok() {
+        Product actual = productRepository.findById(11);
+        Integer id = 11;
+        Integer productCategoryId = 10001;
+        String name = "黒鉛筆";
+        Integer price = 150;
+        String imagePath = "/images/black_pen.jpg";
+        Integer deleteFlag = 0;
+
+        Assertions.assertEquals(id, actual.getId());
+        Assertions.assertEquals(productCategoryId, actual.getProductCategoryId());
+        Assertions.assertEquals(name, actual.getName());
+        Assertions.assertEquals(price, actual.getPrice());
+        Assertions.assertEquals(imagePath, actual.getImagePath());
+        Assertions.assertEquals(deleteFlag, actual.getDeleteFlag());
+    }
+
+    @Test
+    public void updateDeleteFlagTest_Ok() {
         // テスト用の商品ID（DBに存在するIDを使う）
         Integer productId = 11;
         // 実行前の delete_flag を確認
