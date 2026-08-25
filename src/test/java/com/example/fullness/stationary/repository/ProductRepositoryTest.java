@@ -53,7 +53,7 @@ public class ProductRepositoryTest {
         assertEquals(10001, actual.get(4).getProductCategoryId());
         assertEquals("青マーカー", actual.get(4).getName());
         assertEquals(200, actual.get(4).getPrice());
-        assertEquals("/images/blue_maker.jpg", actual.get(4).getImagePath());
+        assertEquals("/images/blue_maker.jpeg", actual.get(4).getImagePath());
 
         assertEquals(16, actual.get(5).getId());
         assertEquals(10001, actual.get(5).getProductCategoryId());
