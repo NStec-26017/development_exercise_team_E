@@ -33,8 +33,8 @@ public class ProductCategoryRepositoryTest {
         assertEquals(10003, actual.get(2).getId());
         assertEquals("パソコン周辺機器", actual.get(2).getName());
 
-        assertEquals(10004, actual.get(0).getId());
-        assertEquals("事務用品", actual.get(0).getName());
+        assertEquals(10004, actual.get(3).getId());
+        assertEquals("事務用品", actual.get(3).getName());
 
         // assertNotNull(actual);
         // assertEquals(3, actual.size());

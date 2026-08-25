@@ -11,6 +11,13 @@
     </resultMap>
 
 
+    <select id="selectAll" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[
+            SELECT * from product_category
+        ]]>
+</select>
+
+
     <!--カテゴリ名の重複確認-->
     <select id="existByName" resultType="Boolean">
         <![CDATA[

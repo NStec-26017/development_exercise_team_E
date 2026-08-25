@@ -34,7 +34,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         // 1. 【業務チェック】すでに同じ名前のカテゴリがないか調べる
         // (※以前作成したexistsByNameのような仕組みをここで使う)
         if (productcategoryrepository.existByName(productCategory.getName())) {
-            throw new RuntimeException("このカテゴリー名はすでに登録されています。");
+            throw new RuntimeException("入力されたカテゴリ名は既に登録されています。");
         }
 
         // 2. 【データベース保存】問題なければ、XMLに書いたcreateメソッドを呼び出す

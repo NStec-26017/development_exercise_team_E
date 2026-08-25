@@ -91,8 +91,10 @@ public class ProductCategoryController {
 
         if (productCategoryService.duplicateCheck(productCategory)) {
             List<String> errorMessages = new ArrayList<>();
-            errorMessages.add("このカテゴリ名は既に登録されています。");
+            errorMessages.add("入力されたカテゴリ名は既に登録されています。");
             // model.addAttribute("errorMessages",errorMessages);
+
+            // リダイレクトする場合は↓↓でかく
             redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
             return "redirect:/admin/category/add";
         }
