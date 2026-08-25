@@ -2,13 +2,17 @@ package com.example.fullness.stationary.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.fullness.stationary.entity.Product;
 
@@ -53,7 +57,7 @@ public class ProductRepositoryTest {
         assertEquals(10001, actual.get(4).getProductCategoryId());
         assertEquals("青マーカー", actual.get(4).getName());
         assertEquals(200, actual.get(4).getPrice());
-        assertEquals("/images/blue_maker.jpg", actual.get(4).getImagePath());
+        assertEquals("/images/blue_maker.jpeg", actual.get(4).getImagePath());
 
         assertEquals(16, actual.get(5).getId());
         assertEquals(10001, actual.get(5).getProductCategoryId());
@@ -85,5 +89,21 @@ public class ProductRepositoryTest {
         assertEquals(500, actual.get(9).getPrice());
         assertEquals("/images/color_pen12.jpeg", actual.get(9).getImagePath());
 
+    }
+
+    @Test
+    void testUpdateDeleteFlag() {
+        // テスト用の商品ID（DBに存在するIDを使う）
+        Integer productId = 11;
+        // 実行前の delete_flag を確認
+        Product before = productRepository.findById(productId);
+        assertNotNull(before);
+        assertEquals(0, before.getDeleteFlag());
+        // delete_flag を 1 に更新
+        productRepository.updateDeleteFlag(productId);
+        // 更新後の値を再取得
+        Product after = productRepository.findById(productId);
+        assertNotNull(after);
+        assertEquals(1, after.getDeleteFlag());
     }
 }

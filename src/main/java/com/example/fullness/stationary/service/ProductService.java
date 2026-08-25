@@ -2,7 +2,6 @@ package com.example.fullness.stationary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.fullness.stationary.entity.Product;
 import com.example.fullness.stationary.entity.ProductStock;
@@ -16,7 +15,7 @@ public class ProductService {
     @Autowired
     private ProductStockRepository productStockRepository;
 
-    // 商品取得（存在しない場合は nullを返す）
+    // 商品取得
     public Product findById(Integer id) {
         return productRepository.findById(id);
     }

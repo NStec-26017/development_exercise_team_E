@@ -22,8 +22,9 @@
             CONCAT('/images/', image_url) AS imagePath,
             delete_flag AS deleteFlag
             FROM product
+			where delete_flag = 0
             ORDER BY id
-            LIMIT 10 OFFSET #{offset}
+            LIMIT 10 OFFSET 0
         ]]>
     </select>
 
