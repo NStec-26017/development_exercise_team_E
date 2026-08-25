@@ -12,8 +12,8 @@
             price AS price ,
             CONCAT('/images/', image_url) AS imagePath ,
             delete_flag AS deleteFlag
-
-            FROM product 
+            FROM product
+            WHERE delete_flag = 0
             ORDER BY id
             LIMIT 10 OFFSET #{offset}
         ]]>
@@ -28,9 +28,9 @@
             price AS price ,
             CONCAT('/images/', image_url) AS imagePath ,
             delete_flag AS deleteFlag
-
-            FROM product 
+            FROM product
             WHERE product_category_id = #{categoryId}
+            AND delete_flag = 0
             ORDER BY id
             LIMIT 10 OFFSET #{offset}
         ]]>
@@ -38,13 +38,13 @@
 
     <select id="countAll" resultType="int">
         <![CDATA[
-            SELECT COUNT(*) FROM product
+            SELECT COUNT(*) FROM product WHERE delete_flag = 0
         ]]>
     </select>
 
     <select id="countByCategoryId" resultType="int">
         <![CDATA[
-            SELECT COUNT(*) FROM product WHERE product_category_id = #{categoryId}
+            SELECT COUNT(*) FROM product WHERE product_category_id = #{categoryId} AND delete_flag = 0
         ]]>
     </select>
 

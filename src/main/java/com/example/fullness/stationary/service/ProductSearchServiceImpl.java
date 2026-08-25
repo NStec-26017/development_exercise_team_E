@@ -3,10 +3,13 @@ package com.example.fullness.stationary.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.stereotype.Service;
 
 import com.example.fullness.stationary.entity.Product;
 import com.example.fullness.stationary.entity.ProductCategory;
+import com.example.fullness.stationary.exception.ProductSearchException;
 import com.example.fullness.stationary.repository.ProductCategoryRepository;
 import com.example.fullness.stationary.repository.ProductRepository;
 
@@ -21,7 +24,13 @@ public class ProductSearchServiceImpl implements ProductSearchService {
     @Override
     public List<Product> getProducts(int offset) {
 
-        return productRepository.selectAll(offset);
+        try {
+            return productRepository.selectAll(offset);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new ProductSearchException("システムエラーが発生しました。管理者に連絡してください。", e);
+        } catch (DataAccessException e) {
+            throw new ProductSearchException("商品情報の取得に失敗しました", e);
+        }
 
     }
 

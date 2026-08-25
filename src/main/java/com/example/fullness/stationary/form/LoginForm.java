@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class LoginForm implements Serializable {
     @NotBlank(message = "アカウントを入力してください")
+    //
     private String accountName;
 
     @NotBlank(message = "パスワードを入力してください")
