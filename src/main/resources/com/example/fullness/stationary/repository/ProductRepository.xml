@@ -3,36 +3,59 @@
 
 <mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
 
+    <resultMap id="productResult" type="com.example.fullness.stationary.entity.Product">
+        <id property="id" column="id"/>
+        <result property="productCategoryId" column="product_category_id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="imagePath" column="image_url"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
     <select id="selectAll" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[
-            SELECT 
-            id AS id ,
-            product_category_id AS productCategoryId ,
-            name AS name ,
-            price AS price ,
-            CONCAT('/images/', image_url) AS imagePath ,
+            SELECT
+            id AS id,
+            product_category_id AS productCategoryId,
+            name AS name,
+            price AS price,
+            CONCAT('/images/', image_url) AS imagePath,
             delete_flag AS deleteFlag
             FROM product
-            WHERE delete_flag = 0
+			where delete_flag = 0
             ORDER BY id
-            LIMIT 10 OFFSET #{offset}
+            LIMIT 10 OFFSET 0
         ]]>
     </select>
 
     <select id="findByCategoryId" resultType="com.example.fullness.stationary.entity.Product">
         <![CDATA[
-            SELECT 
-            id AS id ,
-            product_category_id AS productCategoryId ,
-            name AS name ,
-            price AS price ,
-            CONCAT('/images/', image_url) AS imagePath ,
+            SELECT
+            id AS id,
+            product_category_id AS productCategoryId,
+            name AS name,
+            price AS price,
+            CONCAT('/images/', image_url) AS imagePath,
             delete_flag AS deleteFlag
             FROM product
             WHERE product_category_id = #{categoryId}
             AND delete_flag = 0
             ORDER BY id
             LIMIT 10 OFFSET #{offset}
+        ]]>
+    </select>
+
+    <select id="findById" resultType="com.example.fullness.stationary.entity.Product">
+        <![CDATA[
+            SELECT
+            id AS id,
+            product_category_id AS productCategoryId,
+            name AS name,
+            price AS price,
+            CONCAT('/images/', image_url) AS imagePath,
+            delete_flag AS deleteFlag
+            FROM product
+            WHERE id = #{id}
         ]]>
     </select>
 
@@ -62,5 +85,19 @@
                 (#{productCategoryId}, #{name}, #{price}, #{imagePath}, #{deleteFlag})
         ]]>
     </insert>
+    <update id="updateDeleteFlag">
+        <![CDATA[
+            UPDATE product
+            SET delete_flag = 1
+            WHERE id = #{id}
+        ]]>
+    </update>
+
+    <delete id="deleteById">
+        <![CDATA[
+            DELETE FROM product
+            WHERE id = #{id}
+        ]]>
+    </delete>
 
 </mapper>

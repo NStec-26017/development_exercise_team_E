@@ -35,4 +35,7 @@ public interface ProductRepository {
          */
         int insertProductTen(Product product);
 
+        Product findById(@Param("id") Integer id);
+
+        void updateDeleteFlag(@Param("id") Integer id);
 }

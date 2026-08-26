@@ -1,6 +1,10 @@
 package com.example.fullness.stationary.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.fullness.stationary.entity.ProductStock;
@@ -18,4 +22,7 @@ public interface ProductStockRepository {
      */
     int insertProductStockTen(ProductStock productStock);
 
+    ProductStock findById(@Param("productId") Integer productId);
+
+    List<Map<String, Object>> selectProductStockJoin();
 }

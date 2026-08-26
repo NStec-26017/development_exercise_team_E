@@ -38,3 +38,15 @@ public interface ProductCategoryRepository {
     ProductCategory selectByIdTen(Integer id);
 
 }
+    // @param name 商品カテゴリ名
+    // @return 登録済みの場合はtrue
+
+    Boolean existByName(String name);
+
+    // 商品カテゴリを新規登録
+    // @param name 登録するカテゴリ名
+    // @return 登録に成功した場合はtrue
+
+    Boolean create(ProductCategory productCategory);
+
+}
