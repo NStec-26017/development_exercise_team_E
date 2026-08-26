@@ -29,8 +29,6 @@
                 該当する商品情報がありません
             </div>
 
-
-
             <table class="table align-middle" th:unless="${#lists.isEmpty(products)}">
                 <thead>
                     <tr>
@@ -52,7 +50,7 @@
                 </tbody>
             </table>
 
-            <nav th:if="${totalPages >= 1}">
+            <nav th:if="${totalPages > 1}">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
                         <a class="page-link"
