@@ -14,6 +14,14 @@ public interface ProductStockRepository {
 
     // 在庫情報を更新（修正完了時にDBに保存）
     void updateStock(ProductStock productStock);
+    /**
+     * uc010
+     * 商品在庫を１件取得する
+     * 
+     * @param productStock
+     * @return
+     */
+    int insertProductStockTen(ProductStock productStock);
 
     ProductStock findById(@Param("productId") Integer productId);
 

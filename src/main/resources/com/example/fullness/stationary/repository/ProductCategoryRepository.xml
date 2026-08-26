@@ -54,4 +54,26 @@
         ]]>
     </select>
     
+
+    <!-- uc010 商品カテゴリを全件取得する(カテゴリID の昇順)。 -->
+    <select id="selectAllCategoryTen" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[
+            SELECT
+                  id   AS id
+                , name AS name
+            FROM product_category
+            ORDER BY id
+        ]]>
+    </select>
+
+    <!-- uc010 商品カテゴリIDを指定して 1 件取得する。 -->
+    <select id="selectByIdTen" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[
+            SELECT
+                  id   AS id
+                , name AS name
+            FROM product_category
+            WHERE id = #{id}
+        ]]>
+    </select>
 </mapper>

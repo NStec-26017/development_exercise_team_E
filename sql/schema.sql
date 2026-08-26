@@ -8,7 +8,7 @@ INSERT INTO product(id , product_category_id, name, price, image_url,delete_flag
 (12, 10001 , '黒ボールペン', 150, 'black_pen_o.jpg',0),
 (13, 10001 , '赤ボールペン', 150, 'red_pen_o.jpg',0),
 (14, 10001 , '青ボールペン', 150, 'blue_pen_o.jpg',0),
-(15, 10001 , '青マーカー', 200, 'blue_maker.jpeg',0),
+(15, 10001 , '青マーカー', 200, 'blue_maker.jpg',0),
 (16, 10001 , '赤マーカー', 200, 'red_maker.jpg',0),
 (17, 10001 , '緑マーカー', 200, 'green_maker.jpg',0),
 (18, 10001 ,  '黄マーカー', 200, 'yellow_maker.jpg',0),

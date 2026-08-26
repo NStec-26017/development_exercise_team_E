@@ -137,6 +137,21 @@ public class ProductRepositoryTest {
         assertEquals(1000, actual.getPrice());
         assertEquals("black_pen_1dozen.jpg", actual.getImagePath());
         assertEquals(0, actual.getDeleteFlag());
+    // uc010
+    @Test
+    public void insertProductTenTest() {
+
+        Product product = new Product();
+        product.setName("マウス(白)");
+        product.setPrice(1200);
+        product.setProductCategoryId(10003);
+
+        int actual = productRepository.insertProductTen(product);
+
+        assertEquals(1, actual);
+        assertEquals("マウス(白)", product.getName());
+        assertEquals(1200, product.getPrice());
+        assertEquals(10003, product.getProductCategoryId());
     }
 }
     @Test

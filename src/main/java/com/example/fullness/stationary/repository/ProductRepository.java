@@ -39,6 +39,15 @@ public interface ProductRepository {
         int countByCategoryId(
                         @Param("categoryId") Integer categoryId);
 
+        /**
+         * uc010
+         * 商品を1件登録する
+         * 
+         * @param product
+         * @return
+         */
+        int insertProductTen(Product product);
+
         Product findById(@Param("id") Integer id);
 
         void updateDeleteFlag(@Param("id") Integer id);

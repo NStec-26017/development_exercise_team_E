@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>新商品登録(入力) - フルネス文具 管理画面</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
+
 <body>
-<div th:replace="~{admin/fragments/layout :: header}"></div>
+    <div th:replace="~{admin/fragments/layout :: header}"></div>
+    <main class="container">
+        <div class="admin-panel p-4 mx-auto" style="max-width: 560px;">
+            <h1 class="text-center mb-4">新商品登録(入力)</h1>
 
-<main class="container">
-    <div class="admin-panel p-4 mx-auto" style="max-width: 560px;">
-        <h1 class="text-center mb-4">新商品登録(入力)</h1>
+            <!-- バリデーションエラーを全て表示 -->
+            <div th:if="${#fields.hasErrors('productForm.*') or #fields.hasErrors('productStockForm.*')}"
+                class="alert alert-danger">
+                <ul class="mb-0">
+                    <!-- productForm のエラー -->
+                    <li th:each="err : ${#fields.errors('productForm.*')}" th:text="${err}"></li>
+                    <!-- productStockForm のエラー -->
+                    <li th:each="err : ${#fields.errors('productStockForm.*')}" th:text="${err}"></li>
+                </ul>
+            </div>
 
-        <ul class="alert alert-danger" th:if="${errorMessages}">
-            <li th:each="msg : ${errorMessages}" th:text="${msg}"></li>
-        </ul>
+            <form th:action="@{/admin/product/add}" method="post" enctype="multipart/form-data">
+                <div class="mb-3 row">
+                    <label class="col-sm-4 col-form-label">商品名</label>
+                    <div class="col-sm-8">
+                        <!--  変更前: th:value="${form.name}" -->
+                        <!--  変更後: -->
+                        <input type="text" name="name" class="form-control" th:value="${productForm.name}"
+                            maxlength="20">
+                    </div>
+                </div>
 
-        <form th:action="@{/admin/product/add}" method="post" enctype="multipart/form-data">
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">商品名</label>
-                <div class="col-sm-8">
-                    <input type="text" name="name" class="form-control" th:value="${form.name}" maxlength="20">
+                <div class="mb-3 row">
+                    <label class="col-sm-4 col-form-label">単価</label>
+                    <div class="col-sm-8">
+                        <!--  変更前: th:value="${form.price}" -->
+                        <!--  変更後: -->
+                        <input type="text" name="price" class="form-control" th:value="${productForm.price}">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">単価</label>
-                <div class="col-sm-8">
-                    <input type="text" name="price" class="form-control" th:value="${form.price}">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">在庫数</label>
-                <div class="col-sm-8">
-                    <input type="text" name="stock" class="form-control" th:value="${form.stock}">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">商品カテゴリ</label>
-                <div class="col-sm-8">
-                    <select name="categoryId" class="form-select">
-                        <option value="">選択してください</option>
-                        <option th:each="cat : ${categories}"
-                                th:value="${cat.id}"
-                                th:text="${cat.name}"
-                                th:selected="${form.categoryId != null and form.categoryId == cat.id}"></option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">画像</label>
-                <div class="col-sm-8">
-                    <input type="file" name="image" class="form-control">
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <a th:href="@{/admin/product}" class="btn btn-link link-fs">キャンセル</a>
-                <button type="submit" class="btn btn-fs-solid px-4">完了</button>
-            </div>
-        </form>
-    </div>
-</main>
 
-<div th:replace="~{admin/fragments/layout :: footer}"></div>
+                <div class="mb-3 row">
+                    <label class="col-sm-4 col-form-label">在庫数</label>
+                    <div class="col-sm-8">
+                        <!--  変更前: name="stock" th:value="${form.stock}" -->
+                        <!--  変更後: -->
+                        <input type="text" name="quantity" class="form-control" th:value="${productStockForm.quantity}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-4 col-form-label">商品カテゴリ</label>
+                    <div class="col-sm-8">
+                        <!--  変更前: name="categoryId" ${categories} ${form.categoryId} -->
+                        <!--  変更後: -->
+                        <select name="productCategoryId" class="form-select">
+                            <option value="">選択してください</option>
+                            <option th:each="cat : ${categoryList}" th:value="${cat.id}" th:text="${cat.name}"
+                                th:selected="${productForm.productCategoryId != null and productForm.productCategoryId == cat.id}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a th:href="@{/admin/product}" class="btn btn-link link-fs">キャンセル</a>
+                    <button type="submit" class="btn btn-fs-solid px-4">完了</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <div th:replace="~{admin/fragments/layout :: footer}"></div>
 </body>
+
 </html>

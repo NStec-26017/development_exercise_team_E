@@ -25,6 +25,23 @@ public interface ProductCategoryRepository {
 
     // カテゴリ一件取得（確認画面でカテゴリ名表示するのに利用）
     ProductCategory selectByCategoryId(@Param("categoryId") Integer categoryId);
+    /**
+     * uc010
+     * 商品カテゴリを全件取得する
+     * 
+     */
+    List<ProductCategory> selectAllCategoryTen();
+
+    /**
+     * uc010
+     * 商品カテゴリIDを指定して商品カテゴリを１件取得する
+     * 
+     * @param id
+     * @return
+     */
+    ProductCategory selectByIdTen(Integer id);
+
+}
     // @param name 商品カテゴリ名
     // @return 登録済みの場合はtrue
 
