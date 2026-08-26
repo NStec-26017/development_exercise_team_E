@@ -93,6 +93,23 @@ public class ProductRepositoryTest {
 
     }
 
+    // uc010
+    @Test
+    public void insertProductTenTest() {
+
+        Product product = new Product();
+        product.setName("マウス(白)");
+        product.setPrice(1200);
+        product.setProductCategoryId(10003);
+
+        int actual = productRepository.insertProductTen(product);
+
+        assertEquals(1, actual);
+        assertEquals("マウス(白)", product.getName());
+        assertEquals(1200, product.getPrice());
+        assertEquals(10003, product.getProductCategoryId());
+    }
+}
     @Test
     void findByIdTest_Ok() {
         Product actual = productRepository.findById(11);

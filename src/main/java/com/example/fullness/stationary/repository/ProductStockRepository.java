@@ -13,6 +13,15 @@ import com.example.fullness.stationary.entity.ProductStock;
 @Repository
 public interface ProductStockRepository {
 
+    /**
+     * uc010
+     * 商品在庫を１件取得する
+     * 
+     * @param productStock
+     * @return
+     */
+    int insertProductStockTen(ProductStock productStock);
+
     ProductStock findById(@Param("productId") Integer productId);
 
     List<Map<String, Object>> selectProductStockJoin();

@@ -71,6 +71,20 @@
         ]]>
     </select>
 
+
+    <!-- uc010 商品を 1 件登録する。-->
+    <insert id="insertProductTen"
+            parameterType="com.example.fullness.stationary.entity.Product"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id">
+        <![CDATA[
+            INSERT INTO product
+                (product_category_id, name, price, image_url, delete_flag)
+            VALUES
+                (#{productCategoryId}, #{name}, #{price}, #{imagePath}, #{deleteFlag})
+        ]]>
+    </insert>
     <update id="updateDeleteFlag">
         <![CDATA[
             UPDATE product

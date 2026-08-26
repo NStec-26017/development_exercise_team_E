@@ -60,6 +60,31 @@ public class ProductCategoryRepositoryTest {
         Assertions.assertTrue(actual);
     }
 
+    // uc010
+    @Test
+    public void selectAllCategoryTenTest() {
+        List<ProductCategory> actual = productCategoryRepository.selectAllCategoryTen();
+        assertNotNull(actual);
+        assertEquals(3, actual.size());
+
+        assertEquals(10001, actual.get(0).getId());
+        assertEquals("文具", actual.get(0).getName());
+
+        assertEquals(10002, actual.get(1).getId());
+        assertEquals("雑貨", actual.get(1).getName());
+
+        assertEquals(10003, actual.get(2).getId());
+        assertEquals("パソコン周辺機器", actual.get(2).getName());
+
+    }
+
+    @Test
+    public void selectByIdTenTest() {
+        ProductCategory actual = productCategoryRepository.selectByIdTen(10001);
+
+        assertEquals(10001, actual.getId());
+        assertEquals("文具", actual.getName());
+    }
     // assertNotNull(actual);
     // assertEquals(3, actual.size());
 

@@ -52,3 +52,13 @@ insert into employee_account (id,employee_id,name,password) values (1,101,'fulln
 insert into employee_account (id,employee_id,name,password) values (2,102,'NSTec','$2a$12$HkA9.GfY4onzhJCrhVF4jeDgQS/tGK4hWrGifAUjAerO0bI9SJJ4K');
 
 insert into employee_account (id,employee_id,name,password) values (3,103,'NSTecfullness2026002','$2a$12$5y0.etr41KXCnu8qJXjXM.MEpK87Kt1ZIIPH9nmOqSvOwkIBN7a9G');
+
+//idを31以降で自動採番
+SELECT setval(pg_get_serial_sequence('product', 'id'), 31, true);
+
+//product_idを自動採番
+CREATE SEQUENCE product_stock_product_id_seq;
+
+SELECT setval('product_stock_product_id_seq', COALESCE(MAX(product_id), 0) + 1, false) FROM product_stock;
+
+ALTER TABLE product_stock ALTER COLUMN product_id SET DEFAULT nextval('product_stock_product_id_seq');
