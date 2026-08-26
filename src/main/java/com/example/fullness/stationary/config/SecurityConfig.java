@@ -25,7 +25,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 // アクセス制限の情報
                 authz -> authz
-                        .requestMatchers("/public/**", "/css/**", "/images/**", "/", "/admin", "/admin/login")
+                        .requestMatchers("/public/**", "/css/**", "/images/**", "/", "/admin", "/admin/login", "/error")
                         .permitAll()
                         .anyRequest().authenticated())
 
