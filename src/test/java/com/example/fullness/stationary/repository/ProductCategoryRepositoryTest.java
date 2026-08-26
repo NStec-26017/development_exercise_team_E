@@ -35,6 +35,7 @@ public class ProductCategoryRepositoryTest {
 
     }
 
+    // uc010
     @Test
     public void selectAllCategoryTenTest() {
         List<ProductCategory> actual = productCategoryRepository.selectAllCategoryTen();
@@ -56,7 +57,7 @@ public class ProductCategoryRepositoryTest {
     public void selectByIdTenTest() {
         ProductCategory actual = productCategoryRepository.selectByIdTen(10001);
 
-        assertEquals(10003, actual.getId());
+        assertEquals(10001, actual.getId());
         assertEquals("文具", actual.getName());
     }
 }

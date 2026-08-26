@@ -63,22 +63,4 @@
         ]]>
     </insert>
 
-    <!--  uc010 商品IDを指定して 1 件取得する -->
-    <select id="selectByIdTen" resultType="com.example.fullness.stationary.entity.Product">
-        <![CDATA[
-            SELECT
-                  id                  AS id
-                , product_category_id AS productCategoryId
-                , name                AS name
-                , price               AS price
-                , image_path           AS imagePath
-                , delete_flag         AS deleteFlag
-            FROM product
-            WHERE id = #{id}
-        ]]>
-    </select>
-
-  
-
-
 </mapper>

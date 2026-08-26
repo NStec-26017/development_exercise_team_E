@@ -18,13 +18,4 @@ public interface ProductStockRepository {
      */
     int insertProductStockTen(ProductStock productStock);
 
-    /**
-     * uc010
-     * 商品IDを指定して商品在庫を１件取得する
-     * 
-     * @param productId
-     * @return
-     */
-    ProductStock selectByProductStockIdTen(Integer productId);
-
 }

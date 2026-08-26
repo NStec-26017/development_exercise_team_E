@@ -17,15 +17,4 @@
         ]]>
     </insert>
 
-    <!-- uc010 商品IDを指定して商品在庫を 1 件取得する。 -->
-    <select id="selectByProductStockIdTen" resultType="com.example.fullness.stationary.entity.ProductStock">
-        <![CDATA[
-            SELECT
-                  id         AS id
-                , product_id AS productId
-                , quantity   AS quantity
-            FROM product_stock
-            WHERE product_id = #{productId}
-        ]]>
-    </select>
 </mapper>

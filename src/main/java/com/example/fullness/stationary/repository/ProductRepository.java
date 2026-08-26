@@ -32,13 +32,4 @@ public interface ProductRepository {
          */
         int insertProductTen(Product product);
 
-        /**
-         * uc010
-         * 商品IDを指定して商品を1件取得する
-         * 
-         * @param id
-         * @return
-         */
-        Product selectByIdTen(Integer id);
-
 }
