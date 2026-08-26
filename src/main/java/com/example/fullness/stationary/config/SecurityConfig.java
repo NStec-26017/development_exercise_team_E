@@ -29,6 +29,14 @@ public class SecurityConfig {
                         .permitAll()
                         .anyRequest().authenticated())
 
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            // セッションにメッセージを一時保存
+                            request.getSession().setAttribute("errorMessage", "この操作を行う権限がありません。");
+                            // /error へリダイレクト
+                            response.sendRedirect(request.getContextPath() + "/error");
+                        }))
+
                 // ログインにかかわる情報
                 .formLogin(login -> login
                         // Spring Security が認証を実行するURL
@@ -54,6 +62,7 @@ public class SecurityConfig {
                         .clearAuthentication(true)
                         // 消すCookieの名前
                         .deleteCookies("JSESSIONID"));
+
         return http.build();
     }
 

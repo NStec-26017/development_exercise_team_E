@@ -1,7 +1,7 @@
 package com.example.fullness.stationary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.fullness.stationary.entity.Employee;
 import com.example.fullness.stationary.entity.EmployeeAccount;
 import com.example.fullness.stationary.exception.BusinessException;
+import com.example.fullness.stationary.exception.ProductSearchException;
 import com.example.fullness.stationary.repository.EmployeeAccountRepository;
 import com.example.fullness.stationary.repository.EmployeeRepository;
 
@@ -35,7 +36,11 @@ public class EmployeeAccountServiceImpl implements EmployeeAccountService {
 
     @Override
     public List<Employee> findEmployeesWithoutAccount() {
-        return employeeRepository.selectAllWithoutAccount();
+        try {
+            return employeeRepository.selectAllWithoutAccount();
+        } catch (DataAccessException e) {
+            throw new ProductSearchException("システムエラーが発生しました。管理者に連絡してください。", e);
+        }
     }
 
     @Override
