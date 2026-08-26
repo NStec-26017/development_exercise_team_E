@@ -60,6 +60,14 @@ public class ProductCategoryRepositoryTest {
         Assertions.assertTrue(actual);
     }
 
+    // カテゴリ情報一件取得
+    @Test
+    public void selectByCategoryIdTest_OK() {
+
+        Integer categoryId = 10001;
+        ProductCategory actual = productCategoryRepository.selectByCategoryId(categoryId);
+
+        assertNotNull(actual);
     // uc010
     @Test
     public void selectAllCategoryTenTest() {

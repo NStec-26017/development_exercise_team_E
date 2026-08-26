@@ -44,6 +44,7 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
     }
 
+    // カテゴリ全件取得
     @Override
     public List<ProductCategory> getProductCategories() {
         return productCategoryRepository.selectAll();

@@ -53,12 +53,26 @@ insert into employee_account (id,employee_id,name,password) values (2,102,'NSTec
 
 insert into employee_account (id,employee_id,name,password) values (3,103,'NSTecfullness2026002','$2a$12$5y0.etr41KXCnu8qJXjXM.MEpK87Kt1ZIIPH9nmOqSvOwkIBN7a9G');
 
-//idを31以降で自動採番
-SELECT setval(pg_get_serial_sequence('product', 'id'), 31, true);
 
-//product_idを自動採番
-CREATE SEQUENCE product_stock_product_id_seq;
-
-SELECT setval('product_stock_product_id_seq', COALESCE(MAX(product_id), 0) + 1, false) FROM product_stock;
-
-ALTER TABLE product_stock ALTER COLUMN product_id SET DEFAULT nextval('product_stock_product_id_seq');
+/*商品在庫テーブル　product_stock*/
+insert into product_stock (id,product_id,quantity) values (1,11,10);
+insert into product_stock (id,product_id,quantity) values (2,12,20);
+insert into product_stock (id,product_id,quantity) values (3,13,30);
+insert into product_stock (id,product_id,quantity) values (4,14,40);
+insert into product_stock (id,product_id,quantity) values (5,15,50);
+insert into product_stock (id,product_id,quantity) values (6,16,60);
+insert into product_stock (id,product_id,quantity) values (7,17,70);
+insert into product_stock (id,product_id,quantity) values (8,18,80);
+insert into product_stock (id,product_id,quantity) values (9,19,90);
+insert into product_stock (id,product_id,quantity) values (10,20,100);
+insert into product_stock (id,product_id,quantity) values (11,21,110);
+insert into product_stock (id,product_id,quantity) values (12,22,120);
+insert into product_stock (id,product_id,quantity) values (13,23,130);
+insert into product_stock (id,product_id,quantity) values (14,24,140);
+insert into product_stock (id,product_id,quantity) values (15,25,150);
+insert into product_stock (id,product_id,quantity) values (16,26,160);
+insert into product_stock (id,product_id,quantity) values (17,27,170);
+insert into product_stock (id,product_id,quantity) values (18,28,180);
+insert into product_stock (id,product_id,quantity) values (19,29,190);
+insert into product_stock (id,product_id,quantity) values (20,30,200);
+insert into product_stock (id,product_id,quantity) values (21,31,210)

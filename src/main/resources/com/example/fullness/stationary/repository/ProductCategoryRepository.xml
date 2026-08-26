@@ -43,6 +43,17 @@
     </insert>
 
 
+    <!-- カテゴリを表示するため、カテゴリIDから1件取得 -->
+    <select id="selectByCategoryId" resultType="com.example.fullness.stationary.entity.ProductCategory">
+        <![CDATA[
+        SELECT
+            id,
+            name
+        FROM product_category
+        WHERE id = #{categoryId}
+        ]]>
+    </select>
+    
 
     <!-- uc010 商品カテゴリを全件取得する(カテゴリID の昇順)。 -->
     <select id="selectAllCategoryTen" resultType="com.example.fullness.stationary.entity.ProductCategory">

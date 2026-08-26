@@ -1,8 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fullness.stationary.repository.ProductRepository">
 
+  <!-- 情報を検索するSQL　productテーブル、product_stockテーブル -->
+
+     <!-- 修正ボタンが押下されて商品修正(入力)画面を開くとき：IDで商品を1件だけ特定して持ってくる -->
+    <select id="selectById" resultType="com.example.fullness.stationary.entity.Product">
+        <![CDATA[ 
+        SELECT 
+            id,
+            product_category_id AS productCategoryId,
+            name,
+            price,
+            image_url AS imagePath,
+            delete_flag AS deleteFlag
+        FROM product 
+        WHERE id = #{id}
+        AND delete_flag = 0
+        ]]> 
+    </select>
+
+
+    <!-- 商品情報を更新 -->
+    <update id="updateProduct">
+        <![CDATA[
+        UPDATE product
+        SET product_category_id = #{productCategoryId},
+            name = #{name},
+            price = #{price},
+            image_url = #{imagePath},
+            delete_flag = #{deleteFlag}
+        WHERE id = #{id}
+        AND delete_flag = 0
+        ]]>
+    </update>
+
+    <!-- 以下リーダー -->
     <resultMap id="productResult" type="com.example.fullness.stationary.entity.Product">
         <id property="id" column="id"/>
         <result property="productCategoryId" column="product_category_id"/>

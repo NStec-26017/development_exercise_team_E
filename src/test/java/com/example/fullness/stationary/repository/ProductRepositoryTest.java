@@ -93,6 +93,50 @@ public class ProductRepositoryTest {
 
     }
 
+    // 商品情報一件取得（指定したIDをデータベースからピンポイントで一件引っ張ってこれるか）
+    @Test
+    public void selectByIdTest_OK() {
+
+        Integer id = 11;
+        // SQL実行
+        Product actual = productRepository.selectById(id);
+
+        // データが登録データと一致するか確認
+        assertNotNull(actual);
+        assertEquals(11, actual.getId());
+        assertEquals(10001, actual.getProductCategoryId());
+        assertEquals("黒鉛筆", actual.getName());
+        assertEquals(150, actual.getPrice());
+        assertEquals("black_pen.jpg", actual.getImagePath());
+        assertEquals(0, actual.getDeleteFlag());
+
+    }
+
+    // 商品情報更新
+    @Test
+    public void updateProductTest_OK() {
+        // 1. 更新用のダミー商品データを作成
+        Product product = new Product();
+        product.setId(11);
+        product.setProductCategoryId(10002);
+        product.setName("黒鉛筆(1ダース)");
+        product.setPrice(1000);
+        product.setImagePath("black_pen_1dozen.jpg");
+        product.setDeleteFlag(0);
+
+        // 2. 更新処理を実行
+        productRepository.updateProduct(product);
+
+        // 3. 更新されたデータを再度取得して、正しく変更されているか確認
+        Product actual = productRepository.selectById(11);
+
+        assertNotNull(actual);
+        assertEquals(11, actual.getId());
+        assertEquals(10002, actual.getProductCategoryId());
+        assertEquals("黒鉛筆(1ダース)", actual.getName());
+        assertEquals(1000, actual.getPrice());
+        assertEquals("black_pen_1dozen.jpg", actual.getImagePath());
+        assertEquals(0, actual.getDeleteFlag());
     // uc010
     @Test
     public void insertProductTenTest() {
