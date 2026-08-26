@@ -12,7 +12,6 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
-import com.example.fullness.stationary.entity.EmployeeAccount;
 import com.example.fullness.stationary.entity.ProductCategory;
 
 @MybatisTest

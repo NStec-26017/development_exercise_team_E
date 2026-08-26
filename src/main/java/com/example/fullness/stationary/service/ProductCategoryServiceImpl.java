@@ -39,17 +39,15 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Transactional // 万が一エラーが起きたら保存を取り消す
     public void create(ProductCategory productCategory) {
 
-        // 1. 【業務チェック】すでに同じ名前のカテゴリがないか調べる
-        // (※以前作成したexistsByNameのような仕組みをここで使う)
+        // すでに同じ名前のカテゴリがないか調べる
         if (productCategoryRepository.existByName(productCategory.getName())) {
             throw new RuntimeException("入力されたカテゴリ名は既に登録されています。");
         }
 
-        // 2. 【データベース保存】問題なければ、XMLに書いたcreateメソッドを呼び出す
-        // (ここで自動的にシーケンスからIDが取られ、INSERTされる)
+        // 問題なければ、XMLに書いたcreateメソッドを呼び出す
         Boolean isSuccess = productCategoryRepository.create(productCategory);
 
-        // 3. 【結果の確認】もし保存に失敗していたらエラーを発生させる
+        // もし保存に失敗していたらエラーを発生させる
         if (!isSuccess) {
             throw new RuntimeException("データベースへの登録に失敗しました。");
         }

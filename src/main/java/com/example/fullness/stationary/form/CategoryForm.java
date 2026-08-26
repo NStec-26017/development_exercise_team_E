@@ -15,8 +15,6 @@ public class CategoryForm implements Serializable {
     private Integer id;
 
     // カテゴリー名（画面から入力してもらうメインの項目）
-
-    // ↓↓@NotBlank、@Sizeがコンパイルエラーになる↓↓
     @NotBlank(message = "カテゴリー名を入力してください")
     @Size(min = 1, max = 30, message = "カテゴリー名は1~30文字で入力してください")
     private String name;

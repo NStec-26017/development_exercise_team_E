@@ -76,8 +76,8 @@ public class ProductCategoryController {
             List<String> errorMessages = new ArrayList<>();
             bindingResult.getAllErrors().forEach(e -> errorMessages.add(e.getDefaultMessage()));
 
-            model.addAttribute("errorMessages", errorMessages);
-            model.addAttribute("form", form);
+            redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
+            redirectAttributes.addFlashAttribute("form", form);
 
             // 入力画面にリダイレクト
             return "redirect:/admin/category/add";
@@ -96,6 +96,20 @@ public class ProductCategoryController {
 
             // リダイレクトする場合は↓↓でかく
             redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
+            return "redirect:/admin/category/add";
+        }
+
+        // いらない？
+        if (bindingResult.hasErrors() || !StringUtils.hasText(form.getName())) {
+            List<String> errorMessages = new ArrayList<>();
+            if (bindingResult.hasErrors()) {
+                bindingResult.getAllErrors().forEach(error -> errorMessages.add(error.getDefaultMessage()));
+            } else {
+                errorMessages.add("カテゴリー名を入力してください。");
+            }
+            redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
+            redirectAttributes.addFlashAttribute("form", form);
+            session.setAttribute("form", form);
             return "redirect:/admin/category/add";
         }
 
@@ -127,19 +141,6 @@ public class ProductCategoryController {
         if ("back".equals(action)) {
             session.setAttribute("form", form);
             return "redirect:/admin/category/add";
-        }
-
-        if (bindingResult.hasErrors() || !StringUtils.hasText(form.getName())) {
-            List<String> errorMessages = new ArrayList<>();
-            if (bindingResult.hasErrors()) {
-                bindingResult.getAllErrors().forEach(error -> errorMessages.add(error.getDefaultMessage()));
-            } else {
-                errorMessages.add("カテゴリー名を入力してください");
-            }
-            model.addAttribute("errorMessages", errorMessages);
-            model.addAttribute("form", form);
-            session.setAttribute("form", form);
-            return "admin/category/form";
         }
 
         ProductCategory productCategory = new ProductCategory();
