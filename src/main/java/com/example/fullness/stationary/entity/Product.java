@@ -1,11 +1,13 @@
 package com.example.fullness.stationary.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
 /**
  * 商品(product)テーブル用entityクラス
+ *
  * 
  */
 @Data
@@ -27,4 +29,8 @@ public class Product implements Serializable {
     public String getImagePath() {
         return this.imagePath;
     }
+
+    private List<ProductStock> productStock;
+
+    private List<ProductCategory> productCategory;
 }

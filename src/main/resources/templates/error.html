@@ -14,7 +14,7 @@
     <main class="container">
         <div class="admin-panel p-4 mx-auto" style="max-width: 560px;">
             <h1 class="text-center mb-4">システムエラー</h1>
-            <div class="alert alert-danger" th:text="${errorMessage} ?: 'システムエラーが発生しました。管理者に連絡してください。'"></div>
+            <div class="alert alert-danger" th:text="${errorMessage} ?: 'この操作を行う権限がありません。'"></div>
             <p th:if="${errorDetail}" class="text-muted small" th:text="${errorDetail}"></p>
             <div class="text-center mt-4">
                 <a th:href="@{/admin}" class="link-fs">&raquo; メニュー画面に戻る</a>
