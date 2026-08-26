@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.fullness.stationary.entity.Product;
 
+/**
+ * 商品テーブル({@link Product})に対するデータアクセスを提供するRepository。
+ */
 @Mapper
 @Repository
 public interface ProductRepository {

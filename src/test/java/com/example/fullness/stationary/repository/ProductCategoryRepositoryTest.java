@@ -19,7 +19,7 @@ public class ProductCategoryRepositoryTest {
     private ProductCategoryRepository productCategoryRepository;
 
     @Test
-    public void selectAllTest_OK() {
+    public void selectAllTestOK() {
         List<ProductCategory> actual = productCategoryRepository.selectAll();
         assertNotNull(actual);
         assertEquals(3, actual.size());

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 商品カテゴリ(product_entity)テーブル用entityクラス
+ * 商品カテゴリ(product_category)テーブル用entityクラス
  * 
  */
 @Data

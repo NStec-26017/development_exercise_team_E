@@ -8,6 +8,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * 商品(product)テーブル用Formクラス
+ * 
+ */
 @Data
 public class ProductForm implements Serializable {
     /** 商品ID */
