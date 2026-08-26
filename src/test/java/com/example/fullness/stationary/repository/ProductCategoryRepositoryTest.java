@@ -38,13 +38,10 @@ public class ProductCategoryRepositoryTest {
     // カテゴリ情報一件取得
     @Test
     public void selectByCategoryIdTest_OK() {
-        // 存在するカテゴリID
-        Integer categoryId = 10001;
 
-        // SQL実行
+        Integer categoryId = 10001;
         ProductCategory actual = productCategoryRepository.selectByCategoryId(categoryId);
 
-        // データが正しく取れているか確認
         assertNotNull(actual);
         assertEquals(10001, actual.getId());
         assertEquals("文具", actual.getName());
