@@ -25,4 +25,15 @@ public interface ProductCategoryRepository {
 
     // カテゴリ一件取得（確認画面でカテゴリ名表示するのに利用）
     ProductCategory selectByCategoryId(@Param("categoryId") Integer categoryId);
+    // @param name 商品カテゴリ名
+    // @return 登録済みの場合はtrue
+
+    Boolean existByName(String name);
+
+    // 商品カテゴリを新規登録
+    // @param name 登録するカテゴリ名
+    // @return 登録に成功した場合はtrue
+
+    Boolean create(ProductCategory productCategory);
+
 }

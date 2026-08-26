@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.example.fullness.stationary.entity.ProductStock;
 
+@Repository
 @Mapper
 public interface ProductStockRepository {
 
@@ -13,4 +14,8 @@ public interface ProductStockRepository {
 
     // 在庫情報を更新（修正完了時にDBに保存）
     void updateStock(ProductStock productStock);
+
+    ProductStock findById(@Param("productId") Integer productId);
+
+    List<Map<String, Object>> selectProductStockJoin();
 }

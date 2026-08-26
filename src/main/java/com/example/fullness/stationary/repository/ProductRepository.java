@@ -38,4 +38,8 @@ public interface ProductRepository {
 
         int countByCategoryId(
                         @Param("categoryId") Integer categoryId);
+
+        Product findById(@Param("id") Integer id);
+
+        void updateDeleteFlag(@Param("id") Integer id);
 }

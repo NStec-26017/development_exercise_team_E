@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.CannotGetJdbcConnectionException;
+import org.springframework.dao.PermissionDeniedDataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
+
 import org.springframework.stereotype.Service;
 
 import com.example.fullness.stationary.entity.Product;
@@ -26,10 +28,12 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
         try {
             return productRepository.selectAll(offset);
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new ProductSearchException("システムエラーが発生しました。管理者に連絡してください。", e);
+        } catch (BadSqlGrammarException e) {
+            throw new ProductSearchException("商品データの取得に失敗しました。", e);
+        } catch (PermissionDeniedDataAccessException e) {
+            throw new ProductSearchException("この操作を行う権限がありません。", e);
         } catch (DataAccessException e) {
-            throw new ProductSearchException("商品情報の取得に失敗しました", e);
+            throw new ProductSearchException("システムエラーが発生しました。管理者に連絡してください。", e);
         }
 
     }
