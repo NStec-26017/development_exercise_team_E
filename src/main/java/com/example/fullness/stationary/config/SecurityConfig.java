@@ -37,6 +37,19 @@ public class SecurityConfig {
                             response.sendRedirect(request.getContextPath() + "/error");
                         }))
 
+                // セッションマネジメントの設定
+                .sessionManagement(session -> session
+                        .invalidSessionStrategy((request, response) -> {
+                            // 1. リクエスト属性にタイムアウトメッセージを設定
+                            request.setAttribute("timeoutMessage", "セッションの時間切れです。もう一度やり直してください。");
+
+                            // 2. ユーザーがアクセスしようとした現在のURL（URI）を取得
+                            String currentUri = request.getRequestURI();
+
+                            // 3. URLは一切変えずに、その画面のまま内部転送（フォワード）する
+                            request.getRequestDispatcher(currentUri).forward(request, response);
+                        }))
+
                 // ログインにかかわる情報
                 .formLogin(login -> login
                         // Spring Security が認証を実行するURL
